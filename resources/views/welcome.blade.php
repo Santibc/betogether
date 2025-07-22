@@ -1,13 +1,15 @@
-
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>calendarix</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700,800" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('css/index.css') }}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
     <style>
         /* ============================================
            WELCOME PAGE - AGENDAMIENTO BELLEZA
@@ -15,23 +17,23 @@
 
         :root {
             /* 🎨 Paleta clara y legible */
-            --welcome-bg-base: #fafbff;
-            --welcome-bg-gradient: linear-gradient(135deg, #fafbff 0%, #f8faff 25%, #f5f8ff 50%, #f2f6ff 75%, #eff4ff 100%);
-            
+            --welcome-bg-base: #ffffff;
+            --welcome-bg-gradient: linear-gradient(135deg, #ffffff 0%, #ffffff 25%, #ffffff 50%, #ffffff 75%, #ffffff 100%);
+
             /* 🖤 Textos oscuros para legibilidad */
             --welcome-text-primary: #1a202c;
             --welcome-text-secondary: #4a5568;
             --welcome-text-muted: #718096;
-            
+
             /* 🌈 Acentos de color */
             --welcome-accent-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
             --welcome-secondary-gradient: linear-gradient(135deg, #ec4899 0%, #a855f7 50%, #6366f1 100%);
-            
+
             /* ✨ Fondos y elementos */
             --welcome-white: #ffffff;
             --welcome-gray-light: #f7fafc;
             --welcome-gray-medium: #e2e8f0;
-            
+
             /* 🫧 Glass effects más sutiles */
             --welcome-glass-overlay: rgba(255, 255, 255, 0.7);
             --welcome-glass-border: rgba(99, 102, 241, 0.1);
@@ -70,7 +72,7 @@
             --welcome-shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.1);
             --welcome-shadow-medium: 0 4px 12px rgba(0, 0, 0, 0.1);
             --welcome-shadow-strong: 0 10px 25px rgba(0, 0, 0, 0.15);
-            
+
             /* ⚡ Transiciones */
             --welcome-transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --welcome-transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -96,8 +98,15 @@
 
         /* 🌊 Animación sutil del fondo */
         @keyframes welcomeGradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
+
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
         }
 
         /* 🫧 BOLITAS MÁS SUTILES - FONDO CLARO */
@@ -108,7 +117,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: 
+            background:
                 radial-gradient(circle 120px at 10% 20%, rgba(99, 102, 241, 0.08) 0%, rgba(99, 102, 241, 0.02) 40%, transparent 70%),
                 radial-gradient(circle 100px at 90% 15%, rgba(236, 72, 153, 0.06) 0%, rgba(236, 72, 153, 0.01) 35%, transparent 65%),
                 radial-gradient(circle 140px at 15% 85%, rgba(168, 85, 247, 0.07) 0%, rgba(168, 85, 247, 0.02) 40%, transparent 70%),
@@ -128,7 +137,7 @@
             left: 15%;
             border-radius: 50%;
             background: rgba(99, 102, 241, 0.15);
-            box-shadow: 
+            box-shadow:
                 200px 100px 0 -2px rgba(236, 72, 153, 0.12),
                 -150px 300px 0 0px rgba(168, 85, 247, 0.1),
                 400px 50px 0 3px rgba(139, 92, 246, 0.14),
@@ -144,18 +153,23 @@
 
         /* 🫧 Animación de las bolitas flotantes */
         @keyframes welcomeFloatingBubbles {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translate(0px, 0px) scale(1);
                 opacity: 1;
             }
+
             25% {
                 transform: translate(-15px, -25px) scale(1.1);
                 opacity: 0.8;
             }
+
             50% {
                 transform: translate(20px, -15px) scale(0.9);
                 opacity: 0.6;
             }
+
             75% {
                 transform: translate(-10px, -30px) scale(1.05);
                 opacity: 0.9;
@@ -199,41 +213,23 @@
         }
 
         #welcome-nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
             display: flex;
-            gap: var(--welcome-space-xl);
+            justify-content: space-between;
             align-items: center;
+            padding: 1rem 2rem;
+
+            backdrop-filter: blur(12px);
+            background-color: rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .welcome-nav-link {
-            color: var(--welcome-text-secondary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: var(--welcome-font-sm);
-            padding: var(--welcome-space-sm) var(--welcome-space-lg);
-            border-radius: var(--welcome-radius-md);
-            transition: var(--welcome-transition);
-        }
 
-        .welcome-nav-link:hover {
-            background: var(--welcome-gray-light);
-            color: var(--welcome-text-primary);
-        }
 
-        #welcome-nav-btn {
-            background: var(--welcome-accent-gradient);
-            color: white;
-            padding: var(--welcome-space-md) var(--welcome-space-xl);
-            border-radius: var(--welcome-radius-md);
-            font-weight: 600;
-            text-decoration: none;
-            transition: var(--welcome-transition);
-            box-shadow: var(--welcome-shadow-soft);
-        }
-
-        #welcome-nav-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--welcome-shadow-medium);
-        }
 
         /* 🎯 HERO SECTION */
         #welcome-hero {
@@ -539,9 +535,19 @@
             }
 
             #welcome-nav {
-                flex-direction: column;
-                gap: var(--welcome-space-md);
                 width: 100%;
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: 1000;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 1rem 2rem;
+
+                backdrop-filter: blur(12px);
+                background-color: rgba(0, 0, 0, 0.4);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             #welcome-hero {
@@ -618,7 +624,7 @@
                 animation-iteration-count: 1 !important;
                 transition-duration: 0.01ms !important;
             }
-            
+
             #welcome-body::before,
             #welcome-body::after {
                 animation: none;
@@ -631,34 +637,176 @@
         }
 
         @keyframes welcomeFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
     </style>
 </head>
+
 <body id="welcome-body">
     <!-- 🎯 HEADER -->
-    <header id="welcome-header">
-        <a href="#" id="welcome-logo">
-            <div id="welcome-logo-icon">
-                <i class="fas fa-calendar-check"></i>
-            </div>
-            <span>calendarix</span>
-        </a>
-        
-        <nav id="welcome-nav">
-            <a href="#welcome-features" class="welcome-nav-link">Características</a>
-            <a href="#welcome-pricing" class="welcome-nav-link">Precios</a>
-            <a href="#welcome-contact" class="welcome-nav-link">Contacto</a>
-            <a href="{{ route('login') }}" class="welcome-nav-link">Iniciar Sesión</a>
-            <a href="{{ route('register') }}" id="welcome-nav-btn">
-                <i class="fas fa-rocket"></i>
-                Registra tu negocio
-            </a>
+    <header>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Nuestra Historia</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Mi cuenta</a></li>
+            </ul>
         </nav>
+
+        <div class="hero">
+            <div class="hero-text">
+                <img src="https://betogether.com.co/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-21-at-6.37.16-PM-2-e1747914711170.png"
+                    alt="Logo" class="logo">
+                <h1>¡Hola Colombia!<br>Tu Negocio, <span>Nuestra causa.</span></h1>
+                <p>Te abrimos la puerta a un ecosistema de <strong>crecimiento sin límites.</strong></p>
+                <ul class="benefits">
+                    <li>🛒 Tienda Online al Instante</li>
+                    <li>🚚 Pasarela de pago y Logística integrada</li>
+                    <li>🎉 Festivales Exclusivos para nuestros miembros</li>
+                </ul>
+                <div class="buttons">
+                    <a href="#" class="btn pink">Así lo hacemos posible</a>
+                    <a href="#" class="btn outline">Regístrate ahora</a>
+                </div>
+            </div>
+        </div>
+        <div class="wave-container">
+            <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+                <path fill="white" fill-opacity="1"
+                    d="M0,256L26.7,213.3C53.3,171,107,85,160,90.7C213.3,96,267,192,320,224C373.3,256,427,224,480,224C533.3,224,587,256,640,261.3C693.3,267,747,245,800,234.7C853.3,224,907,224,960,197.3C1013.3,171,1067,117,1120,122.7C1173.3,128,1227,192,1280,208C1333.3,224,1387,192,1413,176L1440,160L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z">
+                </path>
+
+                <path fill="white" fill-opacity="0.6"
+                    d="M0,160L34.3,181.3C68.6,203,137,245,206,250.7C274.3,256,343,224,411,192C480,160,549,128,617,133.3C685.7,139,754,181,823,213.3C891.4,245,960,267,1029,250.7C1097.1,235,1166,181,1234,160C1302.9,139,1371,149,1406,154.7L1440,160L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+                </path>
+                <path fill="white" fill-opacity="0.3"
+                    d="M0,64L18.5,90.7C36.9,117,74,171,111,213.3C147.7,256,185,288,222,266.7C258.5,245,295,171,332,154.7C369.2,139,406,181,443,186.7C480,192,517,160,554,144C590.8,128,628,128,665,138.7C701.5,149,738,171,775,165.3C812.3,160,849,128,886,144C923.1,160,960,224,997,250.7C1033.8,277,1071,267,1108,240C1144.6,213,1182,171,1218,144C1255.4,117,1292,107,1329,122.7C1366.2,139,1403,181,1422,202.7L1440,224L1440,320L1421.5,320C1403.1,320,1366,320,1329,320C1292.3,320,1255,320,1218,320C1181.5,320,1145,320,1108,320C1070.8,320,1034,320,997,320C960,320,923,320,886,320C849.2,320,812,320,775,320C738.5,320,702,320,665,320C627.7,320,591,320,554,320C516.9,320,480,320,443,320C406.2,320,369,320,332,320C295.4,320,258,320,222,320C184.6,320,148,320,111,320C73.8,320,37,320,18,320L0,320Z">
+                </path>
+                <path fill="white" fill-opacity="0.3"
+                    d="M0,192L34.3,197.3C68.6,203,137,213,206,192C274.3,171,343,117,411,112C480,107,549,149,617,181.3C685.7,213,754,235,823,218.7C891.4,203,960,149,1029,106.7C1097.1,64,1166,32,1234,26.7C1302.9,21,1371,43,1406,53.3L1440,64L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+                </path>
+            </svg>
+        </div>
     </header>
 
+    <!-- 🎯 SVG SECTION -->
+
+
     <!-- 🎯 HERO SECTION -->
+    <section class="seccion-oferta">
+        <p class="subtitulo">¡ACTIVA TU MARCA EN LO DIGITAL Y PRESENCIAL!</p>
+        <h2 class="titulo">¿Emprendes o lideras una fundación?</h2>
+        <p class="descripcion">
+            Con nosotros no solo accedes a una plataforma…<br />
+            ¡Abres la puerta a un <strong>ecosistema completo</strong> que se enfoca en atraer visitantes y potenciales
+            clientes para ti.
+        </p>
+
+        <div class="tarjetas-contenedor">
+            <!-- Tarjeta 1 -->
+            <div class="tarjeta">
+                <div class="icono">💻</div>
+                <h3><a href="#">Tu Tienda Online ¡Lista para Vender!</a></h3>
+                <p>Lánzala en minutos y gestiona pagos seguros, envíos y estadísticas para el control total de tus
+                    ventas. 🧾</p>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="tarjeta">
+                <div class="icono">🤝</div>
+                <h3><a href="#">Tu Marca Siempre Visible.</a></h3>
+                <p>¡No solo vendes, tu marca conecta! ❤️ Creamos contenido audiovisual en nuestras redes que cuenta la
+                    historia de algunos de nuestros miembros, impulsando su reconocimiento. <strong>Somos tu aliado para
+                        hacerte conocer.</strong></p>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="tarjeta">
+                <div class="icono">📺</div>
+                <h3><a href="#">¡Brilla en nuestros eventos exclusivos!</a></h3>
+                <p>Lleva tu marca al siguiente nivel en festivales comerciales. Tu tienda digital y física se fusionan
+                    para que solo te preocupes por vender, nosotros nos encargamos del resto y, <strong>¡nosotros
+                        ponemos la infraestructura!</strong> 🏠</p>
+            </div>
+        </div>
+    </section>
+    
+<!-- ondas -->
+    <div class="wave-container-2">
+        <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
+            <path fill="white" fill-opacity="1"
+                d="M0,256L26.7,213.3C53.3,171,107,85,160,90.7C213.3,96,267,192,320,224C373.3,256,427,224,480,224C533.3,224,587,256,640,261.3C693.3,267,747,245,800,234.7C853.3,224,907,224,960,197.3C1013.3,171,1067,117,1120,122.7C1173.3,128,1227,192,1280,208C1333.3,224,1387,192,1413,176L1440,160L1440,320L1413.3,320C1386.7,320,1333,320,1280,320C1226.7,320,1173,320,1120,320C1066.7,320,1013,320,960,320C906.7,320,853,320,800,320C746.7,320,693,320,640,320C586.7,320,533,320,480,320C426.7,320,373,320,320,320C266.7,320,213,320,160,320C106.7,320,53,320,27,320L0,320Z">
+            </path>
+
+            <path fill="white" fill-opacity="0.6"
+                d="M0,160L34.3,181.3C68.6,203,137,245,206,250.7C274.3,256,343,224,411,192C480,160,549,128,617,133.3C685.7,139,754,181,823,213.3C891.4,245,960,267,1029,250.7C1097.1,235,1166,181,1234,160C1302.9,139,1371,149,1406,154.7L1440,160L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+            </path>
+            <path fill="white" fill-opacity="0.3"
+                d="M0,64L18.5,90.7C36.9,117,74,171,111,213.3C147.7,256,185,288,222,266.7C258.5,245,295,171,332,154.7C369.2,139,406,181,443,186.7C480,192,517,160,554,144C590.8,128,628,128,665,138.7C701.5,149,738,171,775,165.3C812.3,160,849,128,886,144C923.1,160,960,224,997,250.7C1033.8,277,1071,267,1108,240C1144.6,213,1182,171,1218,144C1255.4,117,1292,107,1329,122.7C1366.2,139,1403,181,1422,202.7L1440,224L1440,320L1421.5,320C1403.1,320,1366,320,1329,320C1292.3,320,1255,320,1218,320C1181.5,320,1145,320,1108,320C1070.8,320,1034,320,997,320C960,320,923,320,886,320C849.2,320,812,320,775,320C738.5,320,702,320,665,320C627.7,320,591,320,554,320C516.9,320,480,320,443,320C406.2,320,369,320,332,320C295.4,320,258,320,222,320C184.6,320,148,320,111,320C73.8,320,37,320,18,320L0,320Z">
+            </path>
+            <path fill="white" fill-opacity="0.3"
+                d="M0,192L34.3,197.3C68.6,203,137,213,206,192C274.3,171,343,117,411,112C480,107,549,149,617,181.3C685.7,213,754,235,823,218.7C891.4,203,960,149,1029,106.7C1097.1,64,1166,32,1234,26.7C1302.9,21,1371,43,1406,53.3L1440,64L1440,320L1405.7,320C1371.4,320,1303,320,1234,320C1165.7,320,1097,320,1029,320C960,320,891,320,823,320C754.3,320,686,320,617,320C548.6,320,480,320,411,320C342.9,320,274,320,206,320C137.1,320,69,320,34,320L0,320Z">
+            </path>
+        </svg>
+    </div>
+
+
+    <section>
+        
+
+        <section class="hero2">
+            <!-- Onda superior -->
+            <svg class="wave wave-top" viewBox="0 0 1440 320">
+                <path fill="#fff" fill-opacity="1"
+                    d="M0,128L60,154.7C120,181,240,235,360,240C480,245,600,203,720,176C840,149,960,139,1080,149.3C1200,160,1320,192,1380,208L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z">
+                </path>
+            </svg>
+
+            <!-- Contenido -->
+            <h2>¡Únete a la <strong>primera membresía</strong> en Colombia para Emprendedores y
+                <strong>Fundaciones</strong>!
+            </h2>
+            <h1>Juntos, ya impactamos a más de:</h1>
+            <div class="contador"><span id="contador">0</span>K</div>
+            <div class="subcontador">VISITANTES TOTALES</div>
+
+            <!-- Onda inferior -->
+            <svg class="wave wave-bottom" viewBox="0 0 1440 320">
+                <path fill="#fff" fill-opacity="1"
+                    d="M0,96L60,101.3C120,107,240,117,360,128C480,139,600,149,720,160C840,171,960,181,1080,186.7C1200,192,1320,192,1380,192L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z">
+                </path>
+            </svg>
+            <script>
+                const contador = document.getElementById('contador');
+                const valorFinal = 134;
+                let actual = 0;
+                const velocidad = 15;
+
+                const animar = setInterval(() => {
+                    actual++;
+                    contador.textContent = actual;
+                    if (actual >= valorFinal) clearInterval(animar);
+                }, velocidad);
+            </script>
+        </section>
+        <svg class="wave wave-top" viewBox="0 0 1440 320">
+            <path fill="#fff" fill-opacity="1"
+                d="M0,128L60,154.7C120,181,240,235,360,240C480,245,600,203,720,176C840,149,960,139,1080,149.3C1200,160,1320,192,1380,208L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z">
+            </path>
+        </svg>
+
+    </section>
+
+
     <section id="welcome-hero">
         <div id="welcome-hero-badge" class="welcome-floating">
             <i class="fas fa-star" style="color: #fbbf24;"></i>
@@ -666,12 +814,14 @@
         </div>
 
         <h1 id="welcome-hero-title">
-            Reserva servicios de belleza 
-            <span style="background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">y bienestar en tu zona</span>
+            Reserva servicios de belleza
+            <span
+                style="background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">y
+                bienestar en tu zona</span>
         </h1>
 
         <p id="welcome-hero-subtitle">
-            Descubre y agenda citas con los mejores profesionales de belleza, spa, 
+            Descubre y agenda citas con los mejores profesionales de belleza, spa,
             masajes y bienestar cerca de ti. Fácil, rápido y confiable.
         </p>
 
@@ -696,7 +846,8 @@
                         <i class="fas fa-search"></i>
                         Todos los tratamientos y servicios
                     </label>
-                    <input type="text" class="welcome-search-input" placeholder="Corte de cabello, manicure, masaje...">
+                    <input type="text" class="welcome-search-input"
+                        placeholder="Corte de cabello, manicure, masaje...">
                 </div>
 
                 <div class="welcome-search-field">
@@ -740,7 +891,7 @@
                 </div>
                 <h3 class="welcome-feature-title">Reserva 24/7</h3>
                 <p class="welcome-feature-description">
-                    Agenda tus citas en cualquier momento del día. 
+                    Agenda tus citas en cualquier momento del día.
                     Los profesionales actualizan su disponibilidad en tiempo real.
                 </p>
             </div>
@@ -751,7 +902,7 @@
                 </div>
                 <h3 class="welcome-feature-title">Pago Seguro</h3>
                 <p class="welcome-feature-description">
-                    Pagos protegidos y garantizados. Si algo sale mal, 
+                    Pagos protegidos y garantizados. Si algo sale mal,
                     te devolvemos tu dinero sin complicaciones.
                 </p>
             </div>
@@ -762,7 +913,7 @@
                 </div>
                 <h3 class="welcome-feature-title">Profesionales Verificados</h3>
                 <p class="welcome-feature-description">
-                    Todos nuestros profesionales están verificados y tienen 
+                    Todos nuestros profesionales están verificados y tienen
                     reseñas reales de clientes como tú.
                 </p>
             </div>
@@ -773,7 +924,7 @@
                 </div>
                 <h3 class="welcome-feature-title">Recordatorios</h3>
                 <p class="welcome-feature-description">
-                    Recibe notificaciones automáticas por email y SMS 
+                    Recibe notificaciones automáticas por email y SMS
                     para no olvidar nunca tu cita.
                 </p>
             </div>
@@ -784,7 +935,7 @@
                 </div>
                 <h3 class="welcome-feature-title">App Móvil</h3>
                 <p class="welcome-feature-description">
-                    Gestiona tus citas desde tu móvil. Cancela, reprograma 
+                    Gestiona tus citas desde tu móvil. Cancela, reprograma
                     o encuentra nuevos servicios en un solo toque.
                 </p>
             </div>
@@ -795,7 +946,7 @@
                 </div>
                 <h3 class="welcome-feature-title">Ofertas Exclusivas</h3>
                 <p class="welcome-feature-description">
-                    Accede a descuentos especiales y promociones que solo 
+                    Accede a descuentos especiales y promociones que solo
                     encontrarás en nuestra plataforma.
                 </p>
             </div>
@@ -807,7 +958,7 @@
         <div id="welcome-cta-container">
             <h2 id="welcome-cta-title">¿Listo para tu próxima cita?</h2>
             <p id="welcome-cta-subtitle">
-                Únete a miles de personas que ya disfrutan de la mejor experiencia 
+                Únete a miles de personas que ya disfrutan de la mejor experiencia
                 en servicios de belleza y bienestar.
             </p>
             <div id="welcome-hero-actions">
@@ -828,7 +979,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Smooth scroll para enlaces internos
             document.querySelectorAll('a[href^="#welcome-"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
+                anchor.addEventListener('click', function(e) {
                     e.preventDefault();
                     const target = document.querySelector(this.getAttribute('href'));
                     if (target) {
@@ -859,7 +1010,8 @@
             document.querySelectorAll('.welcome-feature-card').forEach((card, index) => {
                 card.style.opacity = '0';
                 card.style.transform = 'translateY(30px)';
-                card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
+                card.style.transition =
+                    `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
                 welcomeObserver.observe(card);
             });
 
@@ -878,7 +1030,7 @@
                 welcomeSearchInput.addEventListener('focus', function() {
                     this.parentNode.style.background = 'rgba(99, 102, 241, 0.02)';
                 });
-                
+
                 welcomeSearchInput.addEventListener('blur', function() {
                     this.parentNode.style.background = '';
                 });
@@ -886,4 +1038,5 @@
         });
     </script>
 </body>
+
 </html>

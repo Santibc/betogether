@@ -1,0 +1,372 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+  background-color: white;
+}
+
+
+header {
+  /*background-image: url('../images/background1.png');*/
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url('../images/background1.png') center/cover no-repeat;
+  /* reemplaza con tu fondo */
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  position: relative;
+  background-color: black;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  float: right;
+}
+
+.logo {
+  max-height: 200px;
+
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  display: block;
+  width: 0%;
+  height: 3px;
+  background: yellow;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  align-items: center;
+  padding: 100px 10%;
+  min-height: calc(100vh - 80px);
+}
+
+.hero-text {
+  max-width: 800px;
+  display: flex;
+
+  align-items: flex-start;
+  height: 100vh;
+  /* Ocupa toda la pantalla */
+  flex-direction: column;
+  text-align: left;
+  /* Centra el texto */
+  padding: 0 20px;
+  /* Espaciado lateral para móviles */
+
+}
+
+.hero-text h1 {
+  /*  width: 100%;           /* Usa todo el espacio posible */
+  max-width: 800px;
+  /* No se pasa de este tamaño */
+  font-size: 2.6rem;
+  /* Puedes ajustarlo si quieres más grande */
+  font-weight: 800;
+  color: yellow;
+  margin-bottom: 50px;
+}
+
+.hero-text h1 span {
+  color: yellow;
+}
+
+.hero-text p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+  float: left;
+  text-align: left;
+  color: white;
+}
+
+.benefits {
+  list-style: none;
+  margin-bottom: 30px;
+  float: left;
+  /* Centra el texto */
+}
+
+.benefits li {
+  color: white;
+  margin-bottom: 10px;
+  font-size: 1rem;
+  text-align: left;
+  /* Centra el texto */
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.hero-text p,
+.hero-text h1 {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.btn {
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn.pink {
+  border: 2px solid transparent;
+  background: #ff00c8;
+  color: white;
+}
+
+.btn.outline {
+  border: 2px solid white;
+  color: white;
+}
+
+.btn.pink:hover {
+  border-color: white;
+  background: transparent;
+  /* fondo transparente al hacer hover */
+}
+
+.btn.outline:hover {
+  background: #ff00c8;
+  border-color: transparent;
+}
+
+body {
+  margin: 0;
+  background-color: white;
+  width: 100%;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('tu-imagen.jpg') no-repeat center center/cover;
+  /*background-color: black; /* fallback si no tienes imagen aún */
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 100px 40px;
+  text-align: center;
+}
+
+.wave-container,
+.wave-container-2{
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 200px;
+  z-index: 2;
+}
+
+.wave-container svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.seccion-oferta {
+  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.subtitulo {
+  color: #ff00c8;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+}
+
+.titulo {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.descripcion {
+  font-size: 16px;
+  color: #444;
+  margin-bottom: 40px;
+}
+
+.tarjetas-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+.tarjetas-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+}
+
+/* TARJETA */
+.tarjeta {
+  background-color: #fff;
+  border-radius: 20px;
+  padding: 30px 25px;
+  max-width: 320px;
+  box-shadow: none;
+  transition: all 0.3s ease;
+  text-align: left;
+  border: 1px solid #eee;
+}
+
+/* SOMBRA AL HACER HOVER */
+.tarjeta:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* ÍCONO CIRCULAR CENTRADO */
+.icono {
+  width: 55px;
+  height: 55px;
+  background-color: #ff00c8;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* CAMBIO DE COLOR EN EL FONDO DEL ÍCONO AL HOVER */
+.tarjeta:hover .icono {
+  background-color: #c400a6;
+}
+
+/* TÍTULO */
+.tarjeta h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+/* ENLACE EN EL TÍTULO */
+.tarjeta h3 a {
+  text-decoration: underline;
+  color: #1c1c1c;
+}
+
+/* TEXTO DEL PÁRRAFO */
+.tarjeta p {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.5;
+}
+
+strong {
+  font-weight: 700;
+}
+
+
+.hero2 {
+  position: relative;
+  background: linear-gradient(90deg, #ff00c8, #7000ff);
+  color: white;
+  text-align: center;
+  padding: 6rem 2rem 8rem;
+  overflow: hidden;
+}
+
+.hero2 h2 {
+  font-size: 1rem;
+  font-weight: 400;
+  margin: 0;
+}
+
+.hero2 h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-top: 0.5rem;
+  color: #ffe600;
+}
+
+.contador {
+  font-size: 4rem;
+  font-weight: 600;
+  margin: 1rem 0 0.2rem;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 5%;
+  }
+
+  .buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+
+
+}
