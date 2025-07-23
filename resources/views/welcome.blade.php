@@ -8,8 +8,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700,800" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         /* ============================================
            WELCOME PAGE - AGENDAMIENTO BELLEZA
@@ -795,8 +794,48 @@
 
         </svg>
     </section>
-    
+<!--<img src="{{ asset('images/imagen1.png') }}" alt="imagen"> -->
+    <section class="features-section">
+  <div class="features-container">
+    <div class="features-image">
+      <img src="{{ asset('images/imagen1.png') }}" alt="imagen">
+    </div>
 
+    <div class="features-text">
+      <p class="subtitulo">UN ECOSISTEMA COMPLETO Y LISTO PARA TI</p>
+      <h2>Sencillo, Rápido y Poderoso</h2>
+      <p class="intro">
+        Tu tienda,<br />
+        Tus eventos, tu momento<br />
+        Inscríbete en la lista de espera 🚨
+      </p>
+
+      <div class="feature-item">
+        <div class="icon pink">📲</div>
+        <div class="feature-content">
+          <h3>Regístrate</h3>
+          <p>Da el primer paso para impulsar tu marca. Crea tu cuenta <strong>sin costo</strong> y configúrala en minutos.</p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon blue">✅</div>
+        <div class="feature-content">
+          <h3>Activa</h3>
+          <p>Elige tu <strong>membresía</strong> activála ✅ y accede a múltiples beneficios. <strong>¡Así podrás enfocarte solo en vender!</strong></p>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="icon pink">📅</div>
+        <div class="feature-content">
+          <h3>Agéndate</h3>
+          <p><strong>Alquila tu espacio</strong> en nuestros festivales de comercio. ¡Tú solo vende, nosotros hacemos el resto!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
     <section id="welcome-hero">
         <div id="welcome-hero-badge" class="welcome-floating">

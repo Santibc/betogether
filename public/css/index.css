@@ -348,10 +348,88 @@ strong {
   fill: #fdfdff; /* Asegura que el color del fondo sea igual al fondo de abajo */
 }
 
-.temp {
-  background-color: red;
+.features-section {
+  font-family: 'Poppins', sans-serif;
 }
 
+.features-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.features-image img {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.features-text {
+  flex: 1;
+  min-width: 320px;
+  max-width: 600px;
+}
+
+.features-text h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 1rem;
+}
+
+.features-text .intro {
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.icon {
+  font-size: 1.4rem;
+  padding: 1rem;
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.icon.pink {
+  background-color: #ff00c8;
+}
+
+.icon.blue {
+  background-color: #2900ff;
+}
+
+.feature-content h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111;
+}
+
+.feature-content p {
+
+  font-size: 0.95rem;
+  color: #555;
+  margin: 0.2rem 0 0;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
 /* Responsive */
 @media screen and (max-width: 768px) {
   .navbar {
