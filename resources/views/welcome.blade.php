@@ -938,6 +938,103 @@
             </script>
         </section>
     </div>
+
+    <section class="hero3">
+        <svg class="wave-top2" viewBox="0 0 1440 320">
+            <path fill="#fff" fill-opacity="0.3"
+                d="M0,128L60,154.7C120,181,240,235,360,240C480,245,600,203,720,176C840,149,960,139,1080,149.3C1200,160,1320,192,1380,208L1440,224L1440,0L1380,0C1320,0,1200,0,1080,0C960,0,840,0,720,0C600,0,480,0,360,0C240,0,120,0,60,0L0,0Z">
+            </path>
+            <path fill="#fff" fill-opacity="0.3"
+                d="M0,256L24,234.7C48,213,96,171,144,154.7C192,139,240,149,288,154.7C336,160,384,160,432,170.7C480,181,528,203,576,192C624,181,672,139,720,122.7C768,107,816,117,864,133.3C912,149,960,171,1008,197.3C1056,224,1104,256,1152,240C1200,224,1248,160,1296,154.7C1344,149,1392,203,1416,229.3L1440,256L1440,0L1416,0C1392,0,1344,0,1296,0C1248,0,1200,0,1152,0C1104,0,1056,0,1008,0C960,0,912,0,864,0C816,0,768,0,720,0C672,0,624,0,576,0C528,0,480,0,432,0C384,0,336,0,288,0C240,0,192,0,144,0C96,0,48,0,24,0L0,0Z">
+            </path>
+            <path fill="#fff" fill-opacity="0.5"
+                d="M0,224L26.7,186.7C53.3,149,107,75,160,69.3C213.3,64,267,128,320,128C373.3,128,427,64,480,64C533.3,64,587,128,640,133.3C693.3,139,747,85,800,80C853.3,75,907,117,960,117.3C1013.3,117,1067,75,1120,90.7C1173.3,107,1227,181,1280,208C1333.3,235,1387,213,1413,202.7L1440,192L1440,0L1413.3,0C1386.7,0,1333,0,1280,0C1226.7,0,1173,0,1120,0C1066.7,0,1013,0,960,0C906.7,0,853,0,800,0C746.7,0,693,0,640,0C586.7,0,533,0,480,0C426.7,0,373,0,320,0C266.7,0,213,0,160,0C106.7,0,53,0,27,0L0,0Z">
+            </path>
+            <path fill="#fff" fill-opacity="1"
+                d="M0,192L10.9,202.7C21.8,213,44,235,65,224C87.3,213,109,171,131,170.7C152.7,171,175,213,196,245.3C218.2,277,240,299,262,298.7C283.6,299,305,277,327,250.7C349.1,224,371,192,393,160C414.5,128,436,96,458,106.7C480,117,502,171,524,186.7C545.5,203,567,181,589,149.3C610.9,117,633,75,655,53.3C676.4,32,698,32,720,42.7C741.8,53,764,75,785,80C807.3,85,829,75,851,64C872.7,53,895,43,916,37.3C938.2,32,960,32,982,32C1003.6,32,1025,32,1047,64C1069.1,96,1091,160,1113,181.3C1134.5,203,1156,181,1178,149.3C1200,117,1222,75,1244,96C1265.5,117,1287,203,1309,224C1330.9,245,1353,203,1375,176C1396.4,149,1418,139,1429,133.3L1440,128L1440,0L1429.1,0C1418.2,0,1396,0,1375,0C1352.7,0,1331,0,1309,0C1287.3,0,1265,0,1244,0C1221.8,0,1200,0,1178,0C1156.4,0,1135,0,1113,0C1090.9,0,1069,0,1047,0C1025.5,0,1004,0,982,0C960,0,938,0,916,0C894.5,0,873,0,851,0C829.1,0,807,0,785,0C763.6,0,742,0,720,0C698.2,0,676,0,655,0C632.7,0,611,0,589,0C567.3,0,545,0,524,0C501.8,0,480,0,458,0C436.4,0,415,0,393,0C370.9,0,349,0,327,0C305.5,0,284,0,262,0C240,0,218,0,196,0C174.5,0,153,0,131,0C109.1,0,87,0,65,0C43.6,0,22,0,11,0L0,0Z">
+            </path>
+        </svg>
+        <div class="hero-content3">
+            <h1>¿Listo para llevar tu negocio al siguiente Nivel?</h1>
+            <p>
+                Forma parte de nuestra comunidad.
+                <span class="highlight3">Regístrate en la lista de espera hoy y prepárate para crecer</span> con
+                nosotros.
+            </p>
+        </div>
+        <div class="form-container">
+            <form>
+                <label>Tu nombre *</label>
+                <input type="text" required>
+
+                <label>¿Eres un ...? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="tipo" required> Emprendimiento</label>
+                    <label><input type="radio" name="tipo" required> Fundación</label>
+                </div>
+
+                <label>¿Ya vendes en línea? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="online" required> Sí</label>
+                    <label><input type="radio" name="online" required> No</label>
+                </div>
+
+                <label>¿Has invertido en festivales anteriormente? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="festival" required> Sí</label>
+                    <label><input type="radio" name="festival" required> No</label>
+                </div>
+
+                <label>¿Cómo podemos encontrar tu negocio en redes sociales?</label>
+                <input type="text">
+
+                <label>Elige la red social</label>
+                <select>
+                    <option>Facebook</option>
+                    <option>Instagram</option>
+                    <option>TikTok</option>
+                </select>
+
+                <label>¿Te gustaría participar en eventos? *</label>
+                <select required>
+                    <option>No estoy interesado</option>
+                    <option>Sí, claro</option>
+                    <option>Depende del evento</option>
+                </select>
+
+                <label>Un email para ponernos en contacto *</label>
+                <input type="email" required>
+
+                <label>Tu número WhatsApp</label>
+                <input type="text">
+
+                <label>Algo que quieras decirnos</label>
+                <textarea rows="4"></textarea>
+
+                <button class="button2" type="submit">Enviar</button>
+            </form>
+        </div>
+        <section class="socials">
+            <p>Síguenos en nuestras redes sociales</p>
+            <div class="icon-container">
+                <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="social-icon"><i class="bi bi-tiktok"></i></a>
+                <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+            </div>
+        </section>
+    </section>
+
+
+    <footer class="footer-personalizado">
+        <hr class="linea-gris">
+        <p class="texto-gris">© BETOGETHER.COM.CO - TODOS LOS DERECHOS RESERVADOS</p>
+        <p class="texto-negro">TECNOLOGÍA ÚTIL, CERCANA Y SIN COMPLICACIONES.</p>
+    </footer>
+
+    <a href="https://wa.me/#" class="whatsapp-button" target="_blank">
+        <i class="bi bi-whatsapp"></i> Contáctanos vía Whatsapp
+    </a>
 </body>
 
 </html>

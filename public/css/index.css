@@ -708,6 +708,242 @@ body {
   min-height: 430px; /* Ajusta este número según el contenido más largo */
 }
 
+.hero3 {
+  position: relative;
+  background: linear-gradient(180deg, #3f00ff, #ff00cc);
+  color: white;
+  text-align: center;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.hero-content3 {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero3 h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero3 p {
+  font-size: 1.2rem;
+  color: #ffdd00;
+  font-weight: 400;
+}
+
+.hero3 .highlight3 {
+  font-weight: 700;
+  color: #ffd500;
+}
+.form-container {
+  border: none;
+  border-radius: 20px;
+  max-width: 800px;
+  width: 100%;
+  margin: 60px auto;
+  backdrop-filter: blur(8px); /* Difumina si hay fondo detrás */
+}
+.form-container input,
+.form-container select,
+.form-container textarea {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+}
+
+.form-container input:focus,
+.form-container select:focus,
+.form-container textarea:focus {
+  border-color: #5c00ff;
+  outline: none;
+  background-color: white;
+  box-shadow: 0 0 0 3px rgba(92, 0, 255, 0.1);
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 500;
+  color: #333;
+
+}
+.form-container label {
+  display: block;
+  text-align: left; /* ✅ Fuerza alineación a la izquierda */
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #333;
+}
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.radio-group {
+  display: flex;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.radio-group label {
+  font-weight: normal;
+  display: flex;
+  align-items: left;
+}
+label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+  color: #333;
+}
+.button2 {
+  background-color: #ff00cc;
+  color: white;
+  border: 1px solid transparent;
+  padding: 12px 25px;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-top: 20px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  transition: background 0.3s ease;
+}
+
+.button2:hover {
+  background-color: white;
+  border-color: #0047ff;
+  color: #0047ff;
+}
+
+/* Botón flotante WhatsApp */
+.whatsapp-button {
+  position: fixed;
+  bottom: 20px;
+  right: 12px;
+  background: #25D366;
+  color: white;
+  padding: 9px 12px;
+  border-radius: 30px;
+  font-size: 18px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+.whatsapp-button:hover {
+  background: white;
+  color: #25D366;
+}
+form {
+  background: rgba(255, 255, 255, 0.9); /* Fondo blanco suave y moderno */
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  margin: auto;
+  font-family: 'Poppins', sans-serif;
+  line-height: 0.8;
+}
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #b832f0;
+  outline: none;
+}
+
+.socials {
+  text-align: center;
+  color: black;
+  font-family: sans-serif;
+}
+
+.socials p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  font-weight: bold;
+}
+
+.icon-container {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+}
+
+.social-icon {
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  text-decoration: none;
+  color: black;
+  font-size: 30px;
+  transition: transform 0.2s ease, background-color 0.2s;
+  
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+  background-color: #e4e4e4;
+}
+.footer-personalizado {
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.footer-personalizado .texto-gris {
+  color: #6c757d;
+  margin-bottom: 4px;
+  font-weight: normal;
+}
+.linea-gris {
+  width: 60%;
+  margin: 0 auto;
+  border: none;
+  border-top: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+.footer-personalizado .texto-negro {
+  color: #000000;
+  font-weight: 500;
+  font-weight: normal;
+}
 /* Responsive */
 @media screen and (max-width: 768px) {
   .navbar {
