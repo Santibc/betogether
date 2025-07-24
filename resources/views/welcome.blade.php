@@ -7,6 +7,7 @@
     <title>calendarix</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700,800" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/index.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
@@ -781,292 +782,162 @@
         </script>
 
         <!-- Onda inferior -->
-        <svg class="wave-bottom" viewBox="0 0 1440 320">
-            <path fill="#FFF" fill-opacity="1"
-                d="M0,32L9.6,74.7C19.2,117,38,203,58,202.7C76.8,203,96,117,115,106.7C134.4,96,154,160,173,197.3C192,235,211,245,230,208C249.6,171,269,85,288,53.3C307.2,21,326,43,346,85.3C364.8,128,384,192,403,208C422.4,224,442,192,461,181.3C480,171,499,181,518,186.7C537.6,192,557,192,576,186.7C595.2,181,614,171,634,149.3C652.8,128,672,96,691,85.3C710.4,75,730,85,749,74.7C768,64,787,32,806,58.7C825.6,85,845,171,864,181.3C883.2,192,902,128,922,96C940.8,64,960,64,979,90.7C998.4,117,1018,171,1037,213.3C1056,256,1075,288,1094,266.7C1113.6,245,1133,171,1152,154.7C1171.2,139,1190,181,1210,165.3C1228.8,149,1248,75,1267,42.7C1286.4,11,1306,21,1325,48C1344,75,1363,117,1382,165.3C1401.6,213,1421,267,1430,293.3L1440,320L1440,320L1430.4,320C1420.8,320,1402,320,1382,320C1363.2,320,1344,320,1325,320C1305.6,320,1286,320,1267,320C1248,320,1229,320,1210,320C1190.4,320,1171,320,1152,320C1132.8,320,1114,320,1094,320C1075.2,320,1056,320,1037,320C1017.6,320,998,320,979,320C960,320,941,320,922,320C902.4,320,883,320,864,320C844.8,320,826,320,806,320C787.2,320,768,320,749,320C729.6,320,710,320,691,320C672,320,653,320,634,320C614.4,320,595,320,576,320C556.8,320,538,320,518,320C499.2,320,480,320,461,320C441.6,320,422,320,403,320C384,320,365,320,346,320C326.4,320,307,320,288,320C268.8,320,250,320,230,320C211.2,320,192,320,173,320C153.6,320,134,320,115,320C96,320,77,320,58,320C38.4,320,19,320,10,320L0,320Z">
-            </path>
-            <path fill="#FFF" fill-opacity="0.5"
-                d="M0,32L18.5,26.7C36.9,21,74,11,111,53.3C147.7,96,185,192,222,245.3C258.5,299,295,309,332,298.7C369.2,288,406,256,443,250.7C480,245,517,267,554,256C590.8,245,628,203,665,208C701.5,213,738,267,775,277.3C812.3,288,849,256,886,256C923.1,256,960,288,997,272C1033.8,256,1071,192,1108,181.3C1144.6,171,1182,213,1218,218.7C1255.4,224,1292,192,1329,165.3C1366.2,139,1403,117,1422,106.7L1440,96L1440,320L1421.5,320C1403.1,320,1366,320,1329,320C1292.3,320,1255,320,1218,320C1181.5,320,1145,320,1108,320C1070.8,320,1034,320,997,320C960,320,923,320,886,320C849.2,320,812,320,775,320C738.5,320,702,320,665,320C627.7,320,591,320,554,320C516.9,320,480,320,443,320C406.2,320,369,320,332,320C295.4,320,258,320,222,320C184.6,320,148,320,111,320C73.8,320,37,320,18,320L0,320Z">
-            </path>
-            <path fill="#fff" fill-opacity="0.3"
-                d="M0,64L21.8,101.3C43.6,139,87,213,131,229.3C174.5,245,218,203,262,181.3C305.5,160,349,160,393,181.3C436.4,203,480,245,524,229.3C567.3,213,611,139,655,122.7C698.2,107,742,149,785,192C829.1,235,873,277,916,266.7C960,256,1004,192,1047,138.7C1090.9,85,1135,43,1178,69.3C1221.8,96,1265,192,1309,208C1352.7,224,1396,160,1418,128L1440,96L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z">
-            </path>
 
-        </svg>
     </section>
-<!--<img src="{{ asset('images/imagen1.png') }}" alt="imagen"> -->
+    <svg class="wave-bottom" viewBox="0 0 1440 320">
+        <path fill="#FFF" fill-opacity="1"
+            d="M0,32L9.6,74.7C19.2,117,38,203,58,202.7C76.8,203,96,117,115,106.7C134.4,96,154,160,173,197.3C192,235,211,245,230,208C249.6,171,269,85,288,53.3C307.2,21,326,43,346,85.3C364.8,128,384,192,403,208C422.4,224,442,192,461,181.3C480,171,499,181,518,186.7C537.6,192,557,192,576,186.7C595.2,181,614,171,634,149.3C652.8,128,672,96,691,85.3C710.4,75,730,85,749,74.7C768,64,787,32,806,58.7C825.6,85,845,171,864,181.3C883.2,192,902,128,922,96C940.8,64,960,64,979,90.7C998.4,117,1018,171,1037,213.3C1056,256,1075,288,1094,266.7C1113.6,245,1133,171,1152,154.7C1171.2,139,1190,181,1210,165.3C1228.8,149,1248,75,1267,42.7C1286.4,11,1306,21,1325,48C1344,75,1363,117,1382,165.3C1401.6,213,1421,267,1430,293.3L1440,320L1440,320L1430.4,320C1420.8,320,1402,320,1382,320C1363.2,320,1344,320,1325,320C1305.6,320,1286,320,1267,320C1248,320,1229,320,1210,320C1190.4,320,1171,320,1152,320C1132.8,320,1114,320,1094,320C1075.2,320,1056,320,1037,320C1017.6,320,998,320,979,320C960,320,941,320,922,320C902.4,320,883,320,864,320C844.8,320,826,320,806,320C787.2,320,768,320,749,320C729.6,320,710,320,691,320C672,320,653,320,634,320C614.4,320,595,320,576,320C556.8,320,538,320,518,320C499.2,320,480,320,461,320C441.6,320,422,320,403,320C384,320,365,320,346,320C326.4,320,307,320,288,320C268.8,320,250,320,230,320C211.2,320,192,320,173,320C153.6,320,134,320,115,320C96,320,77,320,58,320C38.4,320,19,320,10,320L0,320Z">
+        </path>
+        <path fill="#FFF" fill-opacity="0.5"
+            d="M0,32L18.5,26.7C36.9,21,74,11,111,53.3C147.7,96,185,192,222,245.3C258.5,299,295,309,332,298.7C369.2,288,406,256,443,250.7C480,245,517,267,554,256C590.8,245,628,203,665,208C701.5,213,738,267,775,277.3C812.3,288,849,256,886,256C923.1,256,960,288,997,272C1033.8,256,1071,192,1108,181.3C1144.6,171,1182,213,1218,218.7C1255.4,224,1292,192,1329,165.3C1366.2,139,1403,117,1422,106.7L1440,96L1440,320L1421.5,320C1403.1,320,1366,320,1329,320C1292.3,320,1255,320,1218,320C1181.5,320,1145,320,1108,320C1070.8,320,1034,320,997,320C960,320,923,320,886,320C849.2,320,812,320,775,320C738.5,320,702,320,665,320C627.7,320,591,320,554,320C516.9,320,480,320,443,320C406.2,320,369,320,332,320C295.4,320,258,320,222,320C184.6,320,148,320,111,320C73.8,320,37,320,18,320L0,320Z">
+        </path>
+        <path fill="#fff" fill-opacity="0.3"
+            d="M0,64L21.8,101.3C43.6,139,87,213,131,229.3C174.5,245,218,203,262,181.3C305.5,160,349,160,393,181.3C436.4,203,480,245,524,229.3C567.3,213,611,139,655,122.7C698.2,107,742,149,785,192C829.1,235,873,277,916,266.7C960,256,1004,192,1047,138.7C1090.9,85,1135,43,1178,69.3C1221.8,96,1265,192,1309,208C1352.7,224,1396,160,1418,128L1440,96L1440,320L1418.2,320C1396.4,320,1353,320,1309,320C1265.5,320,1222,320,1178,320C1134.5,320,1091,320,1047,320C1003.6,320,960,320,916,320C872.7,320,829,320,785,320C741.8,320,698,320,655,320C610.9,320,567,320,524,320C480,320,436,320,393,320C349.1,320,305,320,262,320C218.2,320,175,320,131,320C87.3,320,44,320,22,320L0,320Z">
+        </path>
+
+    </svg>
+    <!--<img src="{{ asset('images/imagen1.png') }}" alt="imagen"> -->
     <section class="features-section">
-  <div class="features-container">
-    <div class="features-image">
-      <img src="{{ asset('images/imagen1.png') }}" alt="imagen">
-    </div>
-
-    <div class="features-text">
-      <p class="subtitulo">UN ECOSISTEMA COMPLETO Y LISTO PARA TI</p>
-      <h2>Sencillo, Rápido y Poderoso</h2>
-      <p class="intro">
-        Tu tienda,<br />
-        Tus eventos, tu momento<br />
-        Inscríbete en la lista de espera 🚨
-      </p>
-
-      <div class="feature-item">
-        <div class="icon pink">📲</div>
-        <div class="feature-content">
-          <h3>Regístrate</h3>
-          <p>Da el primer paso para impulsar tu marca. Crea tu cuenta <strong>sin costo</strong> y configúrala en minutos.</p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <div class="icon blue">✅</div>
-        <div class="feature-content">
-          <h3>Activa</h3>
-          <p>Elige tu <strong>membresía</strong> activála ✅ y accede a múltiples beneficios. <strong>¡Así podrás enfocarte solo en vender!</strong></p>
-        </div>
-      </div>
-
-      <div class="feature-item">
-        <div class="icon pink">📅</div>
-        <div class="feature-content">
-          <h3>Agéndate</h3>
-          <p><strong>Alquila tu espacio</strong> en nuestros festivales de comercio. ¡Tú solo vende, nosotros hacemos el resto!</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <section id="welcome-hero">
-        <div id="welcome-hero-badge" class="welcome-floating">
-            <i class="fas fa-star" style="color: #fbbf24;"></i>
-            <span>Más de 549.310 citas reservadas hoy</span>
-        </div>
-
-        <h1 id="welcome-hero-title">
-            Reserva servicios de belleza
-            <span
-                style="background: linear-gradient(135deg, #6366f1, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">y
-                bienestar en tu zona</span>
-        </h1>
-
-        <p id="welcome-hero-subtitle">
-            Descubre y agenda citas con los mejores profesionales de belleza, spa,
-            masajes y bienestar cerca de ti. Fácil, rápido y confiable.
-        </p>
-
-        <div id="welcome-hero-actions">
-            <a href="#welcome-search" class="welcome-btn-primary">
-                <i class="fas fa-search"></i>
-                Explorar Servicios
-            </a>
-            <a href="{{ route('register') }}" class="welcome-btn-secondary">
-                <i class="fas fa-store"></i>
-                Para Profesionales
-            </a>
-        </div>
-    </section>
-
-    <!-- 🔍 SEARCH SECTION - ESTILO FRESHA -->
-    <section id="welcome-search">
-        <div id="welcome-search-container">
-            <form id="welcome-search-form">
-                <div class="welcome-search-field">
-                    <label class="welcome-search-label">
-                        <i class="fas fa-search"></i>
-                        Todos los tratamientos y servicios
-                    </label>
-                    <input type="text" class="welcome-search-input"
-                        placeholder="Corte de cabello, manicure, masaje...">
-                </div>
-
-                <div class="welcome-search-field">
-                    <label class="welcome-search-label">
-                        <i class="fas fa-map-marker-alt"></i>
-                        Ubicación actual
-                    </label>
-                    <input type="text" class="welcome-search-input" placeholder="Tu ciudad o código postal">
-                </div>
-
-                <div class="welcome-search-field">
-                    <label class="welcome-search-label">
-                        <i class="fas fa-calendar"></i>
-                        Cualquier fecha
-                    </label>
-                    <input type="date" class="welcome-search-input">
-                </div>
-
-                <button type="submit" id="welcome-search-btn">
-                    Buscar
-                </button>
-            </form>
-        </div>
-    </section>
-
-    <!-- 🏆 STATS SECTION -->
-    <section id="welcome-stats">
-        <p id="welcome-stats-text">
-            <span id="welcome-stats-number">549.310</span> citas reservadas hoy
-        </p>
-    </section>
-
-    <!-- 🎯 FEATURES SECTION -->
-    <section id="welcome-features">
-        <h2 id="welcome-features-title">Por qué elegir AgendaPro</h2>
-
-        <div id="welcome-features-grid">
-            <div class="welcome-feature-card">
-                <div class="welcome-feature-icon">
-                    <i class="fas fa-clock"></i>
-                </div>
-                <h3 class="welcome-feature-title">Reserva 24/7</h3>
-                <p class="welcome-feature-description">
-                    Agenda tus citas en cualquier momento del día.
-                    Los profesionales actualizan su disponibilidad en tiempo real.
-                </p>
+        <div class="features-container">
+            <div class="features-image">
+                <img src="{{ asset('images/imagen1.png') }}" alt="imagen">
             </div>
 
-            <div class="welcome-feature-card">
-                <div class="welcome-feature-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h3 class="welcome-feature-title">Pago Seguro</h3>
-                <p class="welcome-feature-description">
-                    Pagos protegidos y garantizados. Si algo sale mal,
-                    te devolvemos tu dinero sin complicaciones.
+            <div class="features-text">
+                <p class="subtitulo">UN ECOSISTEMA COMPLETO Y LISTO PARA TI</p>
+                <h2>Sencillo, Rápido y Poderoso</h2>
+                <p class="intro">
+                    Tu tienda,<br />
+                    Tus eventos, tu momento<br />
+                    Inscríbete en la lista de espera 🚨
                 </p>
-            </div>
 
-            <div class="welcome-feature-card">
-                <div class="welcome-feature-icon">
-                    <i class="fas fa-star"></i>
+                <div class="feature-item">
+                    <div class="icon pink">📲</div>
+                    <div class="feature-content">
+                        <h3>Regístrate</h3>
+                        <p>Da el primer paso para impulsar tu marca. Crea tu cuenta <strong>sin costo</strong> y
+                            configúrala en minutos.</p>
+                    </div>
                 </div>
-                <h3 class="welcome-feature-title">Profesionales Verificados</h3>
-                <p class="welcome-feature-description">
-                    Todos nuestros profesionales están verificados y tienen
-                    reseñas reales de clientes como tú.
-                </p>
-            </div>
 
-            <div class="welcome-feature-card">
-                <div class="welcome-feature-icon">
-                    <i class="fas fa-bell"></i>
+                <div class="feature-item">
+                    <div class="icon blue">✅</div>
+                    <div class="feature-content">
+                        <h3>Activa</h3>
+                        <p>Elige tu <strong>membresía</strong> activála ✅ y accede a múltiples beneficios. <strong>¡Así
+                                podrás enfocarte solo en vender!</strong></p>
+                    </div>
                 </div>
-                <h3 class="welcome-feature-title">Recordatorios</h3>
-                <p class="welcome-feature-description">
-                    Recibe notificaciones automáticas por email y SMS
-                    para no olvidar nunca tu cita.
-                </p>
-            </div>
 
-            <div class="welcome-feature-card">
-                <div class="welcome-feature-icon">
-                    <i class="fas fa-mobile-alt"></i>
+                <div class="feature-item">
+                    <div class="icon pink">📅</div>
+                    <div class="feature-content">
+                        <h3>Agéndate</h3>
+                        <p><strong>Alquila tu espacio</strong> en nuestros festivales de comercio. ¡Tú solo vende,
+                            nosotros hacemos el resto!</p>
+                    </div>
                 </div>
-                <h3 class="welcome-feature-title">App Móvil</h3>
-                <p class="welcome-feature-description">
-                    Gestiona tus citas desde tu móvil. Cancela, reprograma
-                    o encuentra nuevos servicios en un solo toque.
-                </p>
-            </div>
-
-            <div class="welcome-feature-card">
-                <div class="welcome-feature-icon">
-                    <i class="fas fa-gift"></i>
-                </div>
-                <h3 class="welcome-feature-title">Ofertas Exclusivas</h3>
-                <p class="welcome-feature-description">
-                    Accede a descuentos especiales y promociones que solo
-                    encontrarás en nuestra plataforma.
-                </p>
             </div>
         </div>
     </section>
 
-    <!-- 🎯 CTA SECTION -->
-    <section id="welcome-cta">
-        <div id="welcome-cta-container">
-            <h2 id="welcome-cta-title">¿Listo para tu próxima cita?</h2>
-            <p id="welcome-cta-subtitle">
-                Únete a miles de personas que ya disfrutan de la mejor experiencia
-                en servicios de belleza y bienestar.
+    <section class="bt-section">
+        <p class="bt-subtitle">Nacimos para transformar el emprendimiento y el impacto social en Colombia.</p>
+        <h2 class="bt-title">“Emprender no debe ser imposible, debe ser accesible.”</h2>
+
+        <div class="bt-wrapper">
+            <div class="bt-left">
+                <div class="bt-icon">
+                    <i class="bi bi-calendar2-event-fill"></i>
+                </div>
+                <div class="bt-text">
+                    <p>
+                        <strong>Better Together:</strong>
+                        <em>Tu ecosistema único</em> y accesible <em>en Colombia.</em>
+                        Con nuestra <strong>plataforma y eventos exclusivos</strong>, te damos las herramientas para que
+                        solo te enfoques en tu negocio y vender.
+                        <br>¡Únete y transforma tu estrategia!
+                    </p>
+                </div>
+            </div>
+            <div class="bt-right">
+                <img src="{{ asset('images/imagen2.png') }}" alt="Personas emprendiendo">
+            </div>
+        </div>
+
+        <p class="bt-footer-text">Somos una inversión para tu marca</p>
+    </section>
+
+    <section class="btg-benefits-section">
+        <div class="btg-benefits-content">
+            <h4 class="btg-benefits-subtitle">Acceso exclusivo por inscripción anticipada</h4>
+            <h2 class="btg-benefits-title">Todo lo que necesitas para crecer</h2>
+            <p class="btg-benefits-description">
+                El acceso a Better Together es limitado en esta fase inicial.<br>
+                <strong>¡Solo quienes se registren en la lista de espera</strong> podrán ser parte de este grupo!<br>
+                <strong>No te quedes por fuera y asegura tu lugar ahora.</strong>
             </p>
-            <div id="welcome-hero-actions">
-                <a href="#welcome-search" class="welcome-btn-primary">
-                    <i class="fas fa-calendar-plus"></i>
-                    Reservar Ahora
-                </a>
-                <a href="{{ route('register') }}" class="welcome-btn-secondary">
-                    <i class="fas fa-store-alt"></i>
-                    Registrar mi Negocio
-                </a>
-            </div>
         </div>
     </section>
+    <div class="rectangulo-amarillo">
+        <section class="benefits-container">
+            <div class="benefit-box left-box hidden" data-animate="slideInLeft">
+                <div class="horizontal-line"></div>
+                <div class="benefit-item">
+                    <i class="bi bi-shop"></i>
+                    <p><strong>1. Lanza tu e-commerce en minutos:</strong> gestiona tus pedidos, inventario y potencia
+                        tus
+                        ingresos</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="bi bi-cash"></i>
+                    <p><strong>2. Pagos rápidos y directos:</strong> Pagos ágiles y seguros usando nuestra plataforma en
+                        lo
+                        digital y en festivales.</p>
+                </div>
+            </div>
 
-    <script>
-        // 🌟 Efectos de interactividad para welcome
-        document.addEventListener('DOMContentLoaded', function() {
-            // Smooth scroll para enlaces internos
-            document.querySelectorAll('a[href^="#welcome-"]').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
+            <div class="benefit-center">
+                <img src="{{ asset('images/imagen3.png') }}" alt="persona con bolsa y tablet">
+                <button class="cta-button animate-bottom">¡EMPIEZA AHORA!</button>
+            </div>
 
-            // Animación de entrada para las feature cards
-            const welcomeObserverOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -50px 0px'
-            };
-
-            const welcomeObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }
-                });
-            }, welcomeObserverOptions);
-
-            // Observar feature cards
-            document.querySelectorAll('.welcome-feature-card').forEach((card, index) => {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(30px)';
-                card.style.transition =
-                    `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
-                welcomeObserver.observe(card);
-            });
-
-            // Efecto parallax sutil para el hero
-            window.addEventListener('scroll', () => {
-                const scrolled = window.pageYOffset;
-                const welcomeHero = document.getElementById('welcome-hero');
-                if (welcomeHero) {
-                    welcomeHero.style.transform = `translateY(${scrolled * 0.05}px)`;
-                }
-            });
-
-            // Auto focus en el primer campo del formulario de búsqueda
-            const welcomeSearchInput = document.querySelector('#welcome-search-form .welcome-search-input');
-            if (welcomeSearchInput) {
-                welcomeSearchInput.addEventListener('focus', function() {
-                    this.parentNode.style.background = 'rgba(99, 102, 241, 0.02)';
+            <div class="benefit-box right-box animate-right hidden" data-animate="slideInRight">
+                <div class="horizontal-line"></div>
+                <div class="benefit-item">
+                    <i class="bi bi-truck"></i>
+                    <p><strong>3. Logística Optimizada para ti:</strong> Cotiza y gestiona tus despachos con las
+                        transportadoras, ¡todo desde nuestra plataforma!</p>
+                </div>
+                <div class="benefit-item">
+                    <i class="bi bi-card-text"></i>
+                    <p><strong>4. Presencia en eventos físicos:</strong> Participa en festivales de comercio con
+                        afluencia
+                        de público. Conecta con nuevos clientes e impulsa tus ventas.</p>
+                </div>
+            </div>
+            <script>
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const el = entry.target;
+                            const anim = el.dataset.animate;
+                            el.classList.remove('hidden');
+                            el.classList.add(anim);
+                            observer.unobserve(el); // para que solo se anime una vez
+                        }
+                    });
+                }, {
+                    threshold: 0.5
                 });
 
-                welcomeSearchInput.addEventListener('blur', function() {
-                    this.parentNode.style.background = '';
+                document.querySelectorAll('.hidden[data-animate]').forEach(el => {
+                    observer.observe(el);
                 });
-            }
-        });
-    </script>
+            </script>
+        </section>
+    </div>
 </body>
 
 </html>
