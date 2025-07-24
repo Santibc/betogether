@@ -900,7 +900,7 @@
 
             <div class="benefit-center">
                 <img src="{{ asset('images/imagen3.png') }}" alt="persona con bolsa y tablet">
-                <button class="cta-button animate-bottom">¡EMPIEZA AHORA!</button>
+                <button class="cta-button hidden" data-animate="slideInBottom">¡EMPIEZA AHORA!</button>
             </div>
 
             <div class="benefit-box right-box animate-right hidden" data-animate="slideInRight">

@@ -598,7 +598,6 @@ body {
 .cta-button {
   position: absolute;
   bottom: 2rem;
-  left: 50%;
   transform: translateX(-50%);
   font-weight: bold;
   background-color: white;
@@ -607,12 +606,16 @@ body {
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 10;
-  margin: 0;
   padding: 0.75rem 2rem;
   min-width: 220px;
+  display: block;
+  margin: 40px auto 0 auto; /* top - auto - bottom - auto (horizontal center) */
+  text-align: center;
 }
 .benefit-center {
   overflow: hidden;
+  display: flex;
+  justify-content: center;
 }
 
 .cta-button:hover {
