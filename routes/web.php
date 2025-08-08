@@ -144,6 +144,9 @@ Route::get('/empresa/{id}/configuracion', [App\Http\Controllers\Empresa\Configur
 Route::get('/empresa/{id}/vista-previa', [App\Http\Controllers\Empresa\ConfiguracionEmpresaController::class, 'vistaPrevia'])
     ->name('empresa.vista-previa');
 
+Route::get('/empresa/{id}/configuracion/website', [App\Http\Controllers\Empresa\ConfiguracionEmpresaController::class, 'configurarWebsite'])
+    ->name('empresa.configuracion.website');
+
 Route::get('/bloques/{tipo}', [App\Http\Controllers\Empresa\BloquesController::class, 'mostrarBloque'])
     ->name('empresa.bloques.mostrar');
 

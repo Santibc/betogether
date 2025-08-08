@@ -23,7 +23,7 @@ class NegocioController extends Controller
         // Obtener empresa asociada
         $empresa = \App\Models\Empresa\Empresa::find($negocio->neg_empresa_id);
 
-        return view('negocio.perfil', [
+        return view('themes.theme_etro.profile', [
             'negocio' => $negocio,
             'empresa' => $empresa,
             'currentPage' => 'configuracion',

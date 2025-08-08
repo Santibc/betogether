@@ -11,36 +11,43 @@ class ConfiguracionEmpresaController extends Controller
     public function guardarConfiguracion(Request $request, $id)
     {
         $negocio = Negocio::findOrFail($id);
-        
+
         $request->validate([
             'bloques' => 'required|array',
             'bloques.*' => 'string|in:servicios,galeria,horario,ubicacion,contacto'
         ]);
-        
+
         $negocio->configuracion_bloques = json_encode($request->bloques);
         $negocio->save();
-        
+
         return response()->json([
             'success' => true,
             'message' => 'Configuración guardada exitosamente'
         ]);
     }
-    
+
     public function obtenerConfiguracion($id)
     {
         $negocio = Negocio::findOrFail($id);
         $bloques = json_decode($negocio->configuracion_bloques, true) ?? [];
-        
+
         return response()->json([
             'bloques' => $bloques
         ]);
     }
-    
+
     public function vistaPrevia($id)
     {
         $negocio = Negocio::with('servicios')->findOrFail($id);
         $bloques = json_decode($negocio->configuracion_bloques, true) ?? [];
-        
+
         return view('empresa.vista-previa', compact('negocio', 'bloques'));
+    }
+
+    public function configurarWebsite($id)
+    {
+        $negocio = Negocio::findOrFail($id);
+
+        return view('empresa.configuracion.website', compact('negocio'));
     }
 }
