@@ -2,16 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-
 // Controladores generales
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-
 // Controladores de administración
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
-
 // Controladores del negocio/empresa
 use App\Http\Controllers\negocio\NegocioController;
 use App\Http\Controllers\Empresa\DashboardEmpresaController;
@@ -22,7 +19,6 @@ use App\Http\Controllers\Empresa\NegocioConfiguracionController;
 use App\Http\Controllers\Empresa\CatalogoController;
 use App\Http\Controllers\Empresa\ProductoController;
 use App\Http\Controllers\Empresa\AgendaController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -145,6 +141,9 @@ Route::get('/empresa/{id}/configuracion', [App\Http\Controllers\Empresa\Configur
 Route::get('/empresa/{id}/vista-previa', [App\Http\Controllers\Empresa\ConfiguracionEmpresaController::class, 'vistaPrevia'])
     ->name('empresa.vista-previa');
 
+Route::get('/empresa/{id}/configuracion/website', [App\Http\Controllers\Empresa\ConfiguracionEmpresaController::class, 'configurarWebsite'])
+    ->name('empresa.configuracion.website');
+
 Route::get('/bloques/{tipo}', [App\Http\Controllers\Empresa\BloquesController::class, 'mostrarBloque'])
     ->name('empresa.bloques.mostrar');
 
@@ -166,7 +165,7 @@ Route::prefix('empresa')->name('empresa.')->group(function () {
     Route::get('/{id}/configuracion', [EmpresaController::class, 'configuracion'])->name('configuracion');
     Route::get('/{id}/agenda', [EmpresaController::class, 'agenda'])->name('agenda');
     Route::get('/{id}/clientes', [EmpresaController::class, 'clientes'])->name('clientes');
-    
+
     // Rutas para las subsecciones de configuración (para el futuro)
     Route::prefix('{id}/configuracion')->name('configuracion.')->group(function () {
         Route::get('/negocio', [EmpresaController::class, 'configNegocio'])->name('negocio');
@@ -225,7 +224,7 @@ Route::put('/empresa/catalogo/producto/{producto}/actualizar', [ProductoControll
 Route::get('/empresa/{empresa}/clientes', [EmpresaController::class, 'clientes'])
     ->name('empresa.clientes.index');
 
-    Route::prefix('empresa/{empresa}/clientes')->group(function () {
+Route::prefix('empresa/{empresa}/clientes')->group(function () {
     Route::post('/crear', [EmpresaController::class, 'storeCliente'])->name('empresa.clientes.store');
     Route::put('/{cliente}/editar', [EmpresaController::class, 'updateCliente'])->name('empresa.clientes.update');
     Route::delete('/{cliente}/eliminar', [EmpresaController::class, 'destroyCliente'])->name('empresa.clientes.destroy');
