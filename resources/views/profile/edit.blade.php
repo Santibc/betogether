@@ -4,7 +4,6 @@
 @section('title', 'Mi Perfil')
 
 @push('styles')
-    {{-- CSS específico de esta vista --}}
     <link rel="stylesheet" href="{{ asset('css/profile/profile-perfil.css') }}">
 @endpush
 
@@ -17,6 +16,13 @@
 
     <div class="container py-4">
         <h2 class="mb-4 text-primary" id="header_perfil"><i class="fas fa-user-cog"></i> Mi Perfil</h2>
+
+        {{-- Flash global --}}
+        @if (session('status'))
+            <div class="alert alert-success" role="alert" style="border-radius: 10px;">
+                {{ session('status') }}
+            </div>
+        @endif
 
         {{-- ✅ 1. Actualizar datos personales --}}
         <div class="card mb-4" id="card_datos_perfil">
@@ -153,30 +159,52 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-warning" id="btn_cambiar_password_perfil">Cambiar
-                        contraseña</button>
+                    <button type="submit" class="btn btn-warning" id="btn_cambiar_password_perfil">
+                        Cambiar contraseña
+                    </button>
                 </form>
             </div>
         </div>
 
         {{-- ✅ 3. Empresas asociadas --}}
         <div class="card" id="card_empresas_perfil">
-            <div class="card-header fw-bold">Empresas Asociadas</div>
+            <div class="card-header fw-bold d-flex justify-content-between align-items-center">
+                <span>Empresas Asociadas</span>
+                {{-- Botón SIEMPRE visible para crear nueva --}}
+                <a href="{{ route('negocio.create') }}" class="btn btn-success btn-sm" id="btn_crear_negocio_header">
+                    <i class="fas fa-plus"></i> Crear negocio
+                </a>
+            </div>
+
             <div class="card-body">
                 <div id="lista_empresas_perfil">
                     @forelse(auth()->user()->negocios as $negocio)
                         <div class="d-flex justify-content-between align-items-center border-bottom py-2"
                             id="empresa_{{ $negocio->id }}_perfil">
-                            <div>
+                            <div class="me-2">
                                 <strong>{{ $negocio->neg_nombre_comercial ?? 'Sin nombre' }}</strong><br>
-                                <small>{{ $negocio->neg_email ?? 'Sin email' }}</small>
+                                <small class="text-muted">{{ $negocio->neg_email ?? 'Sin email' }}</small>
                             </div>
-                            <form action="{{ route('negocio.destroy', $negocio->id) }}" method="POST"
-                                class="form_eliminar_perfil" data-empresa="{{ $negocio->neg_nombre_comercial }}">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-sm btn_eliminar_perfil">Eliminar</button>
-                            </form>
+
+                            <div class="d-flex align-items-center gap-2">
+                                {{-- Ver / Configurar --}}
+                                <a href="{{ route('empresa.configuracion', ['id' => $negocio->id]) }}"
+                                    class="btn btn-outline-primary btn-sm">
+                                    Ver
+                                </a>
+
+                                {{-- Eliminar --}}
+                                <form action="{{ route('negocio.destroy', $negocio->id) }}" method="POST"
+                                    class="form_eliminar_perfil d-inline"
+                                    data-empresa="{{ $negocio->neg_nombre_comercial }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn btn-danger btn-sm btn_eliminar_perfil"
+                                        onclick="return confirm('¿Eliminar {{ $negocio->neg_nombre_comercial ?? 'esta empresa' }}?');">
+                                        Eliminar
+                                    </button>
+                                </form>
+                            </div>
                         </div>
                     @empty
                         <div id="no_empresas_perfil" class="text-center">
@@ -188,6 +216,15 @@
                         </div>
                     @endforelse
                 </div>
+
+                {{-- Además del botón del header, dejamos también uno al final por comodidad --}}
+                @if (auth()->user()->negocios->count() > 0)
+                    <div class="text-end mt-3">
+                        <a href="{{ route('negocio.create') }}" class="btn btn-success">
+                            <i class="fas fa-plus"></i> Crear otro negocio
+                        </a>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
