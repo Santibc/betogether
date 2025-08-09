@@ -22,6 +22,8 @@ use App\Http\Controllers\Empresa\ProductoController;
 use App\Http\Controllers\Empresa\AgendaController;
 use App\Http\Controllers\Empresa\ConfiguracionEmpresaController;
 
+
+
 /*
 |--------------------------------------------------------------------------
 | RUTAS PÚBLICAS
@@ -271,4 +273,6 @@ Route::post('/empresa/{id}/agenda/bloqueados', [AgendaController::class, 'guarda
 Route::get('/negocios/{id}-{slug}', [\App\Http\Controllers\NegocioController::class, 'show'])
     ->name('negocios.show');
 
+
 // require __DIR__.'/auth.php';
+
