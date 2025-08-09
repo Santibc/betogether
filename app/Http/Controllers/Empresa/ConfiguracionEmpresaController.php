@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Empresa;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Negocio;
+use App\Models\Plantilla;
 
 class ConfiguracionEmpresaController extends Controller
 {
@@ -46,8 +47,34 @@ class ConfiguracionEmpresaController extends Controller
 
     public function configurarWebsite($id)
     {
-        $negocio = Negocio::findOrFail($id);
+        $empresa = Negocio::with('plantillas')->findOrFail($id);
 
-        return view('empresa.configuracion.website', compact('negocio'));
+        $plantillaSeleccionada = $empresa->plantillas->first();
+
+        $plantillas = Plantilla::all();
+
+        return view('empresa.configuracion.website', compact('empresa', 'plantillas', 'plantillaSeleccionada'));
     }
+
+    public function guardarConfiguracionWebsite(Request $request)
+    {
+        // Validar la petición
+        $datosValidados = $request->validate([
+            'empresa_id' => 'required|exists:negocios,id',
+            'plantilla_id' => 'required|exists:plantillas,id',
+        ]);
+
+        // Encontrar el negocio
+        $negocio = Negocio::findOrFail($datosValidados['empresa_id']);
+
+        // ¡ACCIÓN CORRECTA!
+        // Sincroniza la relación usando la tabla pivote.
+        // Borra cualquier relación vieja y crea la nueva.
+        $negocio->plantillas()->sync([$datosValidados['plantilla_id']]);
+
+        // Redirigir con mensaje de éxito
+        return redirect()->route('empresa.configuracion.website', $negocio->id)
+            ->with('success', 'La plantilla del website se ha guardado exitosamente.');
+    }
+
 }

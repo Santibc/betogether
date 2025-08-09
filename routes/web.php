@@ -19,6 +19,7 @@ use App\Http\Controllers\Empresa\NegocioConfiguracionController;
 use App\Http\Controllers\Empresa\CatalogoController;
 use App\Http\Controllers\Empresa\ProductoController;
 use App\Http\Controllers\Empresa\AgendaController;
+use App\Http\Controllers\Empresa\ConfiguracionEmpresaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -175,9 +176,11 @@ Route::prefix('empresa')->name('empresa.')->group(function () {
         Route::get('/equipo', [EmpresaController::class, 'configEquipo'])->name('equipo');
         Route::get('/formularios', [EmpresaController::class, 'configFormularios'])->name('formularios');
         Route::get('/pagos', [EmpresaController::class, 'configPagos'])->name('pagos');
+        //guardarConfiguracionWebsite
+        Route::post('/website/guardar', [ConfiguracionEmpresaController::class, 'guardarConfiguracionWebsite'])->name('website.guardar');
     });
 });
-
+Route::post('/website/guardar', [ConfiguracionEmpresaController::class, 'guardarConfiguracionWebsite'])->name('website.guardar');
 // Rutas para la configuración de empresa
 Route::get('/empresa/{id}/configuracion/negocio', [EmpresaController::class, 'negocio'])
     ->name('empresa.configuracion.negocio');

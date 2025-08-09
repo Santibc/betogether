@@ -76,4 +76,10 @@ class Negocio extends Model
     {
         return $this->belongsTo(Empresa::class, 'empresa_id');
     }
+
+    public function plantillas()
+    {
+
+        return $this->belongsToMany(Plantilla::class, 'plantilla_negocio', 'empresa_id', 'plantilla_id');
+    }
 }

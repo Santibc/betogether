@@ -115,7 +115,7 @@
     </div> --}}
     <!-- footer-area end -->
     <!-- footer-bottom start -->
-    <div class="footer-bottom-wrap">
+    <div class="footer-bottom-wrap mt-4">
         <div class="container">
             <div class="f-bottom-block">
                 <div class="f-bottom-element f-logo">
@@ -130,7 +130,8 @@
                         <span class="icon"><i class="feather-phone"></i></span>
                         <span class="text">
                             <span class="ft-link">
-                                <a href="tel:+260150105018" title="tel:(+260) 150 105 018">(+260) 150 105 018</a>
+                                <a href="tel:+260150105018"
+                                    title="tel:(+260) 150 105 018">{{ $negocio->neg_telefono }}</a>
                             </span>
                         </span>
                     </div>
@@ -140,7 +141,7 @@
                         <span class="icon"><i class="feather-mail"></i></span>
                         <span class="text">
                             <span class="ft-link">
-                                <a href="mailto:demo@demo.com" class="con-add">demo@demo.com</a>
+                                <a href="mailto:demo@demo.com" class="con-add">{{ $negocio->neg_email }}</a>
                             </span>
                         </span>
                     </div>
@@ -150,7 +151,7 @@
                         <span class="icon"><i class="feather-map-pin"></i></span>
                         <span class="text">
                             <span class="ft-link">
-                                <a href="javascript:void(0)">70 Washington square south</a>
+                                <a href="javascript:void(0)">{{ $negocio->neg_direccion }}</a>
                             </span>
                         </span>
                     </div>
@@ -165,7 +166,7 @@
             <ul class="copyright-ul">
                 <li class="copyright-li ft-text">
                     <div class="copyright-text">
-                        <p>© 2025 . All rights reserved by etro</p>
+                        <p>© 2025 . All rights reserved by {{ $negocio->neg_nombre }}</p>
                     </div>
                 </li>
             </ul>
