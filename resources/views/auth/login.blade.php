@@ -25,7 +25,7 @@
                 <span id="statusMessage"></span>
             </div>
 
-            <form class="auth-form">
+            <form class="auth-form" method="POST" action="{{ route('login') }}" id="loginForm">
                 @csrf
                 <!-- Email -->
                 <div class="auth-input-group">

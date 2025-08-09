@@ -20,10 +20,23 @@
     <header>
         <nav class="navbar">
             <ul class="nav-links">
-                <li><a href="#">Inicio</a></li>
-                <li><a href="#">Nuestra Historia</a></li>
-                <li><a href="#">Servicios</a></li>
-                <li><a href="#">Mi cuenta</a></li>
+                <li><a href="{{ url('/') }}">Inicio</a></li>
+
+                @auth
+                    <li><a href="{{ route('dashboard') }}">Mi cuenta</a></li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}" style="display:inline">
+                            @csrf
+                            <button type="submit" class="btn outline"
+                                style="border:none;background:none;padding:0;cursor:pointer;">
+                                Cerrar sesión
+                            </button>
+                        </form>
+                    </li>
+                @else
+                    <li><a href="{{ route('login') }}">Iniciar sesión</a></li>
+                    <li><a href="{{ route('register') }}">Registro</a></li>
+                @endauth
             </ul>
         </nav>
 
@@ -40,7 +53,7 @@
                 </ul>
                 <div class="buttons">
                     <a href="#" class="btn pink">Así lo hacemos posible</a>
-                    <a href="#" class="btn outline">Regístrate ahora</a>
+                    <a href="{{ route('register') }}" class="btn outline">Regístrate ahora</a>
                 </div>
             </div>
         </div>

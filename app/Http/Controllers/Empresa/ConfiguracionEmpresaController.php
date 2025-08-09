@@ -58,21 +58,14 @@ class ConfiguracionEmpresaController extends Controller
 
     public function guardarConfiguracionWebsite(Request $request)
     {
-        // Validar la petición
         $datosValidados = $request->validate([
             'empresa_id' => 'required|exists:negocios,id',
             'plantilla_id' => 'required|exists:plantillas,id',
         ]);
 
-        // Encontrar el negocio
         $negocio = Negocio::findOrFail($datosValidados['empresa_id']);
-
-        // ¡ACCIÓN CORRECTA!
-        // Sincroniza la relación usando la tabla pivote.
-        // Borra cualquier relación vieja y crea la nueva.
         $negocio->plantillas()->sync([$datosValidados['plantilla_id']]);
 
-        // Redirigir con mensaje de éxito
         return redirect()->route('empresa.configuracion.website', $negocio->id)
             ->with('success', 'La plantilla del website se ha guardado exitosamente.');
     }

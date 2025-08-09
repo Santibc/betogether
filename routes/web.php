@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 // Controladores de administración
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserController;
@@ -33,8 +34,12 @@ Route::get('/', function () {
 
 // Login tradicional
 Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
-Route::post('/login', [AuthenticatedSessionController::class, 'store']);
+Route::post('/login', [AuthenticatedSessionController::class, 'login']);
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+// Registro de usuario
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'store']);
 
 // Google OAuth
 Route::get('auth/google', [GoogleController::class, 'redirectToGoogle'])->name('google.login');
@@ -44,6 +49,13 @@ Route::get('auth/google/callback', [GoogleController::class, 'handleGoogleCallba
 Route::get('/auth-debug', function () {
     return view('auth.login-debug');
 })->name('auth.debug');
+
+Route::get('/force-logout', function () {
+    \Illuminate\Support\Facades\Auth::guard('web')->logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+    return redirect('/')->with('status', 'Sesión cerrada');
+})->middleware('web');
 
 
 /*
@@ -55,25 +67,25 @@ Route::get('/auth-debug', function () {
 Route::middleware('auth')->group(function () {
 
     /*
-    |--------------------------------------------------------------------------
+    |----------------------------------------------------------------------
     | PERFIL DEL USUARIO
-    |--------------------------------------------------------------------------
+    |----------------------------------------------------------------------
     */
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     /*
-    |--------------------------------------------------------------------------
+    |----------------------------------------------------------------------
     | DASHBOARD GENERAL (Administrador o usuario autenticado)
-    |--------------------------------------------------------------------------
+    |----------------------------------------------------------------------
     */
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     /*
-    |--------------------------------------------------------------------------
+    |----------------------------------------------------------------------
     | NEGOCIOS DEL USUARIO
-    |--------------------------------------------------------------------------
+    |----------------------------------------------------------------------
     */
     Route::get('/mis-empresas', [NegocioController::class, 'index'])->name('negocio.index');
     Route::get('/empresa/{id}', [NegocioController::class, 'show'])->name('negocio.show');
@@ -121,7 +133,6 @@ Route::prefix('negocio')->group(function () {
 
     Route::get('/empresa/editor/{id}', [App\Http\Controllers\Empresa\EditorEmpresaController::class, 'index'])->name('empresa.editor');
     Route::post('/empresa/{id}/servicios/guardar', [ServicioEmpresaController::class, 'guardar'])->name('empresa.servicios.guardar');
-
 });
 
 
@@ -131,13 +142,16 @@ Route::prefix('negocio')->group(function () {
 |--------------------------------------------------------------------------
 */
 
+// (mantenemos esta si la estás usando en otra parte)
 Route::get('/empresa/dashboard/{id}', [DashboardEmpresaController::class, 'index'])->name('empresa.dashboard');
 
+// POST de configuración (guardar) — OK que sea fuera o dentro del grupo
 Route::post('/empresa/{id}/configuracion', [App\Http\Controllers\Empresa\ConfiguracionEmpresaController::class, 'guardarConfiguracion'])
     ->name('empresa.configuracion.guardar');
 
-Route::get('/empresa/{id}/configuracion', [App\Http\Controllers\Empresa\ConfiguracionEmpresaController::class, 'obtenerConfiguracion'])
-    ->name('empresa.configuracion.obtener');
+// ❌ Eliminamos la definición duplicada de GET /empresa/{id}/configuracion fuera del group
+// Route::get('/empresa/{id}/configuracion', [App\Http\Controllers\Empresa\ConfiguracionEmpresaController::class, 'obtenerConfiguracion'])
+//     ->name('empresa.configuracion.obtener');
 
 Route::get('/empresa/{id}/vista-previa', [App\Http\Controllers\Empresa\ConfiguracionEmpresaController::class, 'vistaPrevia'])
     ->name('empresa.vista-previa');
@@ -153,21 +167,31 @@ Route::get('/empresa/{id}/servicios', [App\Http\Controllers\Empresa\ServicioEmpr
 
 Route::post('/empresa/{id}/servicios', [App\Http\Controllers\Empresa\ServicioEmpresaController::class, 'guardar'])
     ->name('empresa.servicios.guardar');
+
+
 /*
 |--------------------------------------------------------------------------
-| INCLUYE RUTAS DE AUTENTICACIÓN DE LARAVEL BREEZE
+| RUTAS BAJO PREFIX('empresa')->name('empresa.')
 |--------------------------------------------------------------------------
 */
 
-
-// Rutas para el dashboard de empresa
 Route::prefix('empresa')->name('empresa.')->group(function () {
     Route::get('/{id}/dashboard', [EmpresaController::class, 'dashboard'])->name('dashboard');
-    Route::get('/{id}/configuracion', [EmpresaController::class, 'configuracion'])->name('configuracion');
+
+    // ✅ Unificamos aquí la ruta GET /empresa/{id}/configuracion
+    //    para usar ConfiguracionEmpresaController@obtenerConfiguracion
+    //    con el nombre empresa.configuracion.obtener (el que necesitas).
+    Route::get('/{id}/configuracion', [ConfiguracionEmpresaController::class, 'obtenerConfiguracion'])
+        ->name('configuracion.obtener');
+
+    Route::get('/{id}/configuracion', [\App\Http\Controllers\Empresa\EmpresaController::class, 'configuracion'])
+    ->name('configuracion');
+    //
+
     Route::get('/{id}/agenda', [EmpresaController::class, 'agenda'])->name('agenda');
     Route::get('/{id}/clientes', [EmpresaController::class, 'clientes'])->name('clientes');
 
-    // Rutas para las subsecciones de configuración (para el futuro)
+    // Sub-secciones de configuración
     Route::prefix('{id}/configuracion')->name('configuracion.')->group(function () {
         Route::get('/negocio', [EmpresaController::class, 'configNegocio'])->name('negocio');
         Route::get('/citas', [EmpresaController::class, 'configCitas'])->name('citas');
@@ -176,12 +200,16 @@ Route::prefix('empresa')->name('empresa.')->group(function () {
         Route::get('/equipo', [EmpresaController::class, 'configEquipo'])->name('equipo');
         Route::get('/formularios', [EmpresaController::class, 'configFormularios'])->name('formularios');
         Route::get('/pagos', [EmpresaController::class, 'configPagos'])->name('pagos');
-        //guardarConfiguracionWebsite
+
+        // guardarConfiguracionWebsite
         Route::post('/website/guardar', [ConfiguracionEmpresaController::class, 'guardarConfiguracionWebsite'])->name('website.guardar');
     });
 });
+
+// Extra fuera del group (name distinto, no colisiona)
 Route::post('/website/guardar', [ConfiguracionEmpresaController::class, 'guardarConfiguracionWebsite'])->name('website.guardar');
-// Rutas para la configuración de empresa
+
+// Configuración de empresa (otras rutas sueltas que ya tenías)
 Route::get('/empresa/{id}/configuracion/negocio', [EmpresaController::class, 'negocio'])
     ->name('empresa.configuracion.negocio');
 
@@ -198,6 +226,7 @@ Route::get('/empresa/configuracion/procedencia', [NegocioConfiguracionController
 Route::put('/empresa/configuracion/procedencia/{id}', [NegocioConfiguracionController::class, 'actualizarProcedencia'])->name('empresa.configuracion.procedencia.update');
 Route::post('/empresa/configuracion/procedencia', [NegocioConfiguracionController::class, 'actualizarProcedencia'])
     ->name('empresa.configuracion.procedencia.update');
+
 Route::get('/empresa/negocio/catalogo/servicios', [CatalogoController::class, 'menuServicios'])->name('catalogo.servicios');
 Route::post('/empresa/servicio/guardar', [CatalogoController::class, 'guardarServicio'])->name('catalogo.servicio.guardar');
 Route::post('/empresa/negocio/catalogo/servicios', [CatalogoController::class, 'guardarServicio'])->name('servicios.guardar');
@@ -207,11 +236,11 @@ Route::put('/catalogo/servicios/{id}', [CatalogoController::class, 'actualizarSe
 Route::post('/catalogo/servicios/{id}/duplicar', [CatalogoController::class, 'duplicarServicio'])->name('servicios.duplicar');
 Route::delete('/catalogo/servicios/{id}', [CatalogoController::class, 'eliminarServicio'])->name('servicios.eliminar');
 Route::get('/empresa/servicio/crear', [CatalogoController::class, 'formCrearServicio'])->name('servicios.crear');
+
 Route::post('/empresa/catalogo/categorias/guardar', [CatalogoController::class, 'guardarCategoria'])
     ->name('catalogo.categorias.guardar');
-Route::post('/empresa/servicio/guardar', [CatalogoController::class, 'guardarServicio'])->name('servicios.guardar');
 
-//productos
+// productos
 Route::get('/empresa/catalogo/producto/crear', [ProductoController::class, 'create'])->name('producto.crear');
 Route::post('/empresa/catalogo/producto', [ProductoController::class, 'store'])->name('producto.store');
 Route::post('/empresa/catalogo/producto/guardar', [ProductoController::class, 'guardar'])->name('producto.guardar');
@@ -224,6 +253,7 @@ Route::put('/empresa/catalogo/producto/{producto}', [ProductoController::class, 
 Route::delete('/empresa/catalogo/producto/{producto}', [ProductoController::class, 'destroy'])->name('producto.eliminar');
 Route::delete('/empresa/productos/imagen/{id}', [ProductoController::class, 'eliminarImagen'])->name('producto.imagen.eliminar');
 Route::put('/empresa/catalogo/producto/{producto}/actualizar', [ProductoController::class, 'update'])->name('producto.actualizar');
+
 Route::get('/empresa/{empresa}/clientes', [EmpresaController::class, 'clientes'])
     ->name('empresa.clientes.index');
 
@@ -232,15 +262,13 @@ Route::prefix('empresa/{empresa}/clientes')->group(function () {
     Route::put('/{cliente}/editar', [EmpresaController::class, 'updateCliente'])->name('empresa.clientes.update');
     Route::delete('/{cliente}/eliminar', [EmpresaController::class, 'destroyCliente'])->name('empresa.clientes.destroy');
 });
-//agenda
-Route::get('/empresa/{id}/agenda', [AgendaController::class, 'index'])->name('empresa.agenda');
-// routes/web.php
-Route::get('/empresa/{id}/agenda/configurar', [AgendaController::class, 'configurar'])->name('empresa.agenda.configurar');
 
+// agenda (dejamos estas dos como estaban en tu archivo)
+Route::get('/empresa/{id}/agenda', [AgendaController::class, 'index'])->name('empresa.agenda');
+Route::get('/empresa/{id}/agenda/configurar', [AgendaController::class, 'configurar'])->name('empresa.agenda.configurar');
 Route::post('/empresa/{id}/agenda/bloqueados', [AgendaController::class, 'guardarBloqueados'])->name('agenda.guardar_bloqueados');
 
 Route::get('/negocios/{id}-{slug}', [\App\Http\Controllers\NegocioController::class, 'show'])
     ->name('negocios.show');
 
-
-require __DIR__.'/auth.php';
+// require __DIR__.'/auth.php';
