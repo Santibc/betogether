@@ -9,27 +9,15 @@ use App\Models\Empresa\Empresa;
 
 class Negocio extends Model
 {
+    protected $table = 'negocios';
+
     protected $fillable = [
-        'user_id',
-        'neg_nombre',
-        'neg_apellido',
-        'neg_email',
-        'neg_telefono',
-        'neg_pais',
-        'neg_acepto',
-        'neg_imagen',
-        'neg_nombre_comercial',
-        'neg_sitio_web',
-        'neg_categorias',
-        'neg_equipo',
-        'neg_direccion',
-        'neg_portada',
-        'neg_virtual',
-        'neg_direccion_confirmada',
-        'configuracion_bloques',
-        'neg_facebook',
-        'neg_instagram',
-    ];
+    'neg_nombre','neg_apellido','neg_email','neg_telefono','neg_pais',
+    'neg_imagen','neg_portada',
+    'neg_nombre_comercial','neg_sitio_web','neg_facebook','neg_instagram',
+    'neg_categorias','neg_equipo','neg_direccion','neg_virtual',
+    'neg_direccion_confirmada','neg_acepto',
+];
 
     protected $casts = [
         'neg_categorias' => 'array',
@@ -75,5 +63,11 @@ class Negocio extends Model
     public function empresa()
     {
         return $this->belongsTo(Empresa::class, 'empresa_id');
+    }
+
+    public function plantillas()
+    {
+
+        return $this->belongsToMany(Plantilla::class, 'plantilla_negocio', 'empresa_id', 'plantilla_id');
     }
 }

@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Negocio;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class NegocioController extends Controller
 {
@@ -18,46 +21,96 @@ class NegocioController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'neg_nombre' => 'required|string|max:100',
-            'neg_apellido' => 'required|string|max:100',
-            'neg_email' => 'required|email|max:255|unique:negocios',
-            'neg_telefono' => 'required|string|max:20',
-            'neg_pais' => 'nullable|string|max:100',
-            'neg_facebook' => 'nullable|string|max:255',
-            'neg_instagram' => 'nullable|string|max:255',
-            'neg_imagen' => 'nullable|image|max:2048',
-            'neg_nombre_comercial' => 'nullable|string|max:255',
-            'neg_sitio_web' => 'nullable|string|max:255',
-            'neg_categorias' => 'nullable|string',
-            'neg_equipo' => 'nullable|string|max:255',
-            'neg_direccion' => 'nullable|string|max:255',
-            'neg_virtual' => 'nullable|boolean',
-            'neg_direccion_confirmada' => 'nullable|boolean',
-            'configuracion_bloques' => 'nullable|string',
-            'neg_acepto' => 'accepted',
-        ]);
+        $user = Auth::user();
 
-        // Imagen
+        // Normalizador simple para URLs
+        $normalizeUrl = function ($u) {
+            if (!$u) {
+                return null;
+            }
+            $u = trim($u);
+            if ($u === '') {
+                return null;
+            }
+            if (!preg_match('~^https?://~i', $u)) {
+                $u = 'https://' . $u;
+            }
+            return $u;
+        };
+
+        // Subidas (disk public) -> requiere `php artisan storage:link`
+        $logoUrl = null;
         if ($request->hasFile('neg_imagen')) {
-            $file = $request->file('neg_imagen');
-            $filename = uniqid('negocio_') . '.' . $file->getClientOriginalExtension();
-            $destination = '/home/u533926615/domains/calendarix.uy/public_html/images';
-            $file->move($destination, $filename);
-            $validated['neg_imagen'] = '/images/' . $filename;
+            try {
+                $path = $request->file('neg_imagen')->store('negocios/logos', 'public');
+                $logoUrl = '/storage/' . $path;
+            } catch (\Throwable $e) {
+                // si falla subir, lo ignoramos
+            }
         }
 
-        $validated['neg_virtual'] = $request->has('neg_virtual');
-        $validated['neg_direccion_confirmada'] = $request->has('neg_direccion_confirmada');
-        $validated['neg_acepto'] = true;
-        $validated['user_id'] = auth()->id();
+        $portadaUrl = null;
+        if ($request->hasFile('neg_portada')) {
+            try {
+                $path = $request->file('neg_portada')->store('negocios/portadas', 'public');
+                $portadaUrl = '/storage/' . $path;
+            } catch (\Throwable $e) {
+            }
+        }
 
-        $negocio = \App\Models\Negocio::create($validated);
+        // Nombre / Apellido (defaults para NOT NULL)
+        $parts    = preg_split('/\s+/', (string)($user->name ?? ''), 2);
+        $nombre   = $parts[0] ?? 'N/A';
+        $apellido = $parts[1] ?? '';
 
-        // ✅ Guardar ID en sesión
-        session(['negocio_id' => $negocio->id]);
+        // Construir entidad
+        $negocio = new Negocio([
+            'neg_nombre'               => $nombre,
+            'neg_apellido'             => $apellido,
+            'neg_email'                => $user->email ?? 'no-email@local.test',
+            'neg_telefono'             => $user->celular ?? '',
+            'neg_pais'                 => $user->pais ?? 'Colombia',
 
-        return redirect()->route('negocio.datos');
+            'neg_imagen'               => $logoUrl,
+            'neg_portada'              => $portadaUrl,
+
+            'neg_nombre_comercial'     => $request->input('neg_nombre_comercial'),
+            'neg_sitio_web'            => $normalizeUrl($request->input('neg_sitio_web')),
+            'neg_facebook'             => $normalizeUrl($request->input('neg_facebook')),
+            'neg_instagram'            => $normalizeUrl($request->input('neg_instagram')),
+            'neg_categorias'           => $request->input('neg_categorias'),
+            'neg_equipo'               => $request->input('neg_equipo'),
+            'neg_direccion'            => $request->input('neg_direccion'),
+            'neg_virtual'              => (bool) $request->boolean('neg_virtual'),
+            'neg_direccion_confirmada' => (bool) $request->boolean('neg_direccion_confirmada'),
+            'neg_acepto'               => (bool) ($request->input('neg_acepto', 1) ? 1 : 0),
+        ]);
+
+        try {
+            // Asociación directa: setea automáticamente user_id
+            $user->negocios()->save($negocio);
+
+            // Guarda en sesión para el siguiente paso del flujo
+            session(['negocio_id' => $negocio->id]);
+
+            return redirect()
+            ->route('empresa.configuracion', ['id' => $negocio->id])
+            ->with('status', 'Negocio creado. ¡Configúralo aquí!');
+
+        } catch (\Throwable $e) {
+            // Limpieza si algo falló al guardar
+            if ($logoUrl) {
+                $p = ltrim(str_replace('/storage/', '', $logoUrl), '/');
+                Storage::disk('public')->delete($p);
+            }
+            if ($portadaUrl) {
+                $p = ltrim(str_replace('/storage/', '', $portadaUrl), '/');
+                Storage::disk('public')->delete($p);
+            }
+
+            report($e);
+            return back()->with('error', 'No se pudo crear el negocio.')->withInput();
+        }
     }
 
 

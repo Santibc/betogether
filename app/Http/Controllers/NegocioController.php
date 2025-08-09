@@ -6,6 +6,7 @@ use App\Models\Negocio;
 use App\Models\Empresa\Empresa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use App\Models\Plantilla;
 
 class NegocioController extends Controller
 {
@@ -20,10 +21,11 @@ class NegocioController extends Controller
             ]);
         }
 
-        // Obtener empresa asociada
         $empresa = \App\Models\Empresa\Empresa::find($negocio->neg_empresa_id);
 
-        return view('themes.theme_etro.profile', [
+        $plantilla = $negocio->plantillas()->first();
+
+        return view('themes.'.$plantilla->nombre.'.profile', [
             'negocio' => $negocio,
             'empresa' => $empresa,
             'currentPage' => 'configuracion',

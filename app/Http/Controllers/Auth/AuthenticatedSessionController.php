@@ -21,40 +21,49 @@ class AuthenticatedSessionController extends Controller
     /**
      * Procesar la autenticación.
      */
-    public function store(Request $request)
-
+    public function login(Request $request)
     {
-         \Log::info('== INTENTANDO LOGIN ==', $request->only('email'));
+        // Validación básica
         $credentials = $request->validate([
-            'email' => ['required', 'email'],
+            'email'    => ['required', 'email:filter'],
             'password' => ['required'],
         ]);
-        \Log::info('== CREDENCIALES VALIDAS ==', $credentials);
 
+        // Normalizar email a minúsculas para evitar falsos negativos
+        $credentials['email'] = mb_strtolower($credentials['email']);
+
+        // Log seguro (sin contraseña)
+        \Log::info('== INTENTANDO LOGIN ==', ['email' => $credentials['email']]);
+
+        // Intento de login
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
             $user = Auth::user();
 
-            if ($user->hasRole('Administrador')) {
-                return redirect()->route('dashboard');
-            }
-
+            // Flujo requerido: si es Cliente → ir primero a editar perfil
             if ($user->hasRole('Cliente')) {
-                return redirect()->route('dashboard');
+                \Log::info('== LOGIN OK - CLIENTE ==', ['user_id' => $user->id]);
+                return redirect()->route('profile.edit');
             }
 
-            Auth::logout();
-            return abort(403, 'No tienes permisos asignados.');
+            // Admin → dashboard
+            if ($user->hasRole('Administrador')) {
+                \Log::info('== LOGIN OK - ADMIN ==', ['user_id' => $user->id]);
+                return redirect()->intended(route('dashboard'));
+            }
+
+            // Otros roles (si los hay) → dashboard por defecto
+            \Log::info('== LOGIN OK - OTRO ROL ==', ['user_id' => $user->id, 'roles' => $user->getRoleNames()]);
+            return redirect()->intended(route('dashboard'));
         }
-        \Log::warning('== CREDENCIALES INVALIDAS ==', $credentials);
+
+        \Log::warning('== CREDENCIALES INVALIDAS ==', ['email' => $credentials['email']]);
 
         throw ValidationException::withMessages([
             'email' => __('Estas credenciales no coinciden con nuestros registros.'),
         ]);
-        
     }
-
 
     /**
      * Cerrar sesión.
@@ -64,6 +73,7 @@ class AuthenticatedSessionController extends Controller
         Auth::guard('web')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
+
         return redirect('/');
     }
 }
