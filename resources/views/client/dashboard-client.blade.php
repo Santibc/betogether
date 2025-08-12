@@ -127,13 +127,7 @@
 
         <!-- Estadísticas -->
         <section class="clx-stats">
-            <div class="clx-stat-card">
-                <div class="clx-stat-icon primary">
-                    <i class="fas fa-calendar-check"></i>
-                </div>
-                <div class="clx-stat-number" id="clx-stat-appointments">8</div>
-                <div class="clx-stat-label">Citas este mes</div>
-            </div>
+
             <div class="clx-stat-card">
                 <div class="clx-stat-icon success">
                     <i class="fas fa-heart"></i>
