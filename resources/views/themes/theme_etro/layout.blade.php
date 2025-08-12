@@ -30,11 +30,6 @@
                 <li class="notify-wrap notify-mail">
                     <div class="notify-text">
                         <ul class="grid-wrap">
-                            <li class="grid-wrapper">
-                                <p class="notification-free"><span class="top-c">Envio gratis</span> en pedidos
-                                    superiores a
-                                    400.000 mil COP</p>
-                            </li>
                         </ul>
                     </div>
                 </li>
