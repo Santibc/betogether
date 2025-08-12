@@ -21,7 +21,7 @@
     <!-- Sidebar -->
     <aside class="clx-sidebar">
         <div class="clx-logo">
-            <h1><i class="fas fa-calendar-alt"></i> Calendarix</h1>
+            <h1><i class="fas fa-calendar-alt"></i> Better Together</h1>
         </div>
 
         <div class="clx-user-info">
@@ -108,10 +108,10 @@
                     <p>Tienes <span id="clx-pending-count">3 citas</span> pendientes para esta semana</p>
                 </div>
                 <div class="clx-quick-actions">
-                    <button class="clx-btn clx-btn-primary" id="clx-btn-book">
+{{--                     <button class="clx-btn clx-btn-primary" id="clx-btn-book">
                         <i class="fas fa-plus"></i>
                         Agendar Cita
-                    </button>
+                    </button> --}}
                     <button class="clx-btn clx-btn-secondary" id="clx-btn-search">
                         <i class="fas fa-search"></i>
                         Buscar Servicios
