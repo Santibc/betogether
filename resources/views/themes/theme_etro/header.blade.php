@@ -5,7 +5,7 @@
                 <div class="main-menu-wrap">
                     <div class="header-theme-logo">
                         <a href="index1.html" class="theme-logo">
-                            <img src="{{ asset($negocio->neg_imagen) }}" class="img-fluid" alt="logo" width="120">
+                            <img src="{{ asset('images/'.$negocio->neg_imagen) }}" class="img-fluid" alt="logo" width="120">
                         </a>
                     </div>
                     <div class="header-element header-search">

@@ -5,7 +5,7 @@
             <div class="collection-category">
                 <div class="section-capture">
                     <div class="section-title">
-                        <h2 data-animate="animate__fadeIn">Productos</h2>
+                        <h2 data-animate="animate__fadeIn">Servicios</h2>
                     </div>
                 </div>
                 <div class="collection-wrap">
@@ -16,12 +16,12 @@
                                     <div class="single-product-wrap">
                                         <div class="product-image">
                                             <a href="product-template.html" class="pro-img">
-                                                <img src="{{ asset($item->imagen) }}" class="img-fluid img1 resp-img1"
-                                                    alt="{{ $item->nombre }}">
+                                           {{--      <img src="{{ asset($item->imagen) }}" class="img-fluid img1 resp-img1"
+                                                    alt="{{ $item->nombre }}"> --}}
                                             </a>
-                                            <div class="product-label pro-new-sale">
+                                {{--             <div class="product-label pro-new-sale">
                                                 <span class="product-label-title">30%</span>
-                                            </div>
+                                            </div> --}}
                                             <div class="product-action">
                                                 <a href="wishlist-product.html" class="add-to-wishlist">
                                                     <span class="product-icon"><i class="feather-heart"></i></span>
