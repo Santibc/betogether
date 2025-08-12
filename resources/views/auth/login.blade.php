@@ -72,7 +72,7 @@
                     Entrar
                 </button>
 
-                <!-- Google Login -->
+{{--                 <!-- Google Login -->
                 <div class="auth-google-section">
                     <div class="auth-divider"><span>o continúa con</span></div>
                     <a href="{{ route('google.login') }}" class="auth-btn-google">
@@ -88,7 +88,7 @@
                         </svg>
                         Google
                     </a>
-                </div>
+                </div> --}}
             </form>
             <div class="auth-bottom-link">
                 <a href="{{ route('register') }}">¿No tienes cuenta? Regístrate</a>

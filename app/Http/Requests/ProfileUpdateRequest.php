@@ -37,7 +37,7 @@ class ProfileUpdateRequest extends FormRequest
             $nombreArchivo = 'usuario_' . $user->id . '_' . time() . '.' . $archivo->getClientOriginalExtension();
 
             // Ruta destino fuera de Laravel storage
-            $archivo->move('/home/u533926615/domains/calendarix.uy/public_html/images/perfiles/', $nombreArchivo);
+            $archivo->move('/home/u916591959/domains/lightsalmon-otter-789304.hostingersite.com/public_html/images/perfiles/', $nombreArchivo);
 
             // Ruta pública completa
             $data['foto'] = 'https://calendarix.uy/images/perfiles/' . $nombreArchivo;

@@ -72,7 +72,7 @@ class NegocioConfiguracionController extends Controller
         if ($request->hasFile('confneg_imagen')) {
             $file = $request->file('confneg_imagen');
             $filename = uniqid('negocio_') . '.' . $file->getClientOriginalExtension();
-            $destination = '/home/u533926615/domains/calendarix.uy/public_html/images';
+            $destination = '/home/u916591959/domains/lightsalmon-otter-789304.hostingersite.com/public_html/images';
             $file->move($destination, $filename);
             $negocio->neg_imagen = '/images/' . $filename;
         }
@@ -81,7 +81,7 @@ class NegocioConfiguracionController extends Controller
         if ($request->hasFile('confneg_portada')) {
             $file = $request->file('confneg_portada');
             $filename = uniqid('portada_') . '.' . $file->getClientOriginalExtension();
-            $destination = '/home/u533926615/domains/calendarix.uy/public_html/images';
+            $destination = '/home/u916591959/domains/lightsalmon-otter-789304.hostingersite.com/public_html/images';
             $file->move($destination, $filename);
             $negocio->neg_portada = '/images/' . $filename;
         }

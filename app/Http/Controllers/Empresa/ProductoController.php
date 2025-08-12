@@ -68,7 +68,7 @@ class ProductoController extends Controller
         if ($request->hasFile('imagen')) {
             $file = $request->file('imagen');
             $filename = uniqid('producto_') . '.' . $file->getClientOriginalExtension();
-            $destination = '/home/u533926615/domains/calendarix.uy/public_html/images';
+            $destination = '/home/u916591959/domains/lightsalmon-otter-789304.hostingersite.com/public_html/images';
             $file->move($destination, $filename);
             $datos['imagen'] = '/images/' . $filename;
         }
@@ -100,7 +100,7 @@ class ProductoController extends Controller
         if ($request->hasFile('imagenes')) {
             foreach ($request->file('imagenes') as $imagen) {
                 $filename = uniqid('producto_multi_') . '.' . $imagen->getClientOriginalExtension();
-                $destination = '/home/u533926615/domains/calendarix.uy/public_html/images';
+                $destination = '/home/u916591959/domains/lightsalmon-otter-789304.hostingersite.com/public_html/images';
                 $imagen->move($destination, $filename);
 
                 \App\Models\ImagenProducto::create([
@@ -178,7 +178,7 @@ class ProductoController extends Controller
         // Imagen principal (con ruta fija)
         if ($request->hasFile('imagen')) {
             $filename = 'producto_' . uniqid() . '.' . $request->file('imagen')->getClientOriginalExtension();
-            $request->file('imagen')->move('/home/u533926615/domains/calendarix.uy/public_html/images', $filename);
+            $request->file('imagen')->move('/home/u916591959/domains/lightsalmon-otter-789304.hostingersite.com/public_html/images', $filename);
             $producto->imagen = '/images/' . $filename;
         }
 
@@ -188,7 +188,7 @@ class ProductoController extends Controller
         if ($request->hasFile('imagenes')) {
             foreach ($request->file('imagenes') as $img) {
                 $filename = 'producto_multi_' . uniqid() . '.' . $img->getClientOriginalExtension();
-                $img->move('/home/u533926615/domains/calendarix.uy/public_html/images', $filename);
+                $img->move('/home/u916591959/domains/lightsalmon-otter-789304.hostingersite.com/public_html/images', $filename);
 
                 \App\Models\ImagenProducto::create([
                     'producto_id' => $producto->id,

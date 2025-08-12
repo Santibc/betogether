@@ -35,14 +35,13 @@
                     </li>
                 @else
                     <li><a href="{{ route('login') }}">Iniciar sesión</a></li>
-                    <li><a href="{{ route('register') }}">Registro</a></li>
                 @endauth
             </ul>
         </nav>
 
         <div class="hero">
             <div class="hero-text">
-                <img src="https://betogether.com.co/wp-content/uploads/2025/05/WhatsApp-Image-2025-05-21-at-6.37.16-PM-2-e1747914711170.png"
+                <img width="20%" src="{{ asset('images/logo.jpg') }}"
                     alt="Logo" class="logo">
                 <h1>¡Hola Colombia!<br>Tu Negocio, <span>Nuestra causa.</span></h1>
                 <p>Te abrimos la puerta a un ecosistema de <strong>crecimiento sin límites.</strong></p>
