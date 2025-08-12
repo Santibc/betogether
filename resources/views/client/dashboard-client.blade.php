@@ -152,18 +152,7 @@
 
         <!-- Contenido principal -->
         <section class="clx-content-grid">
-            <!-- Próximas citas -->
-            <div class="clx-card">
-                <div class="clx-card-header">
-                    <h3 class="clx-card-title">Próximas Citas</h3>
-                    <button class="clx-btn clx-btn-ghost">Ver todas</button>
-                </div>
-                <div class="clx-card-body">
-                    <div id="clx-appointments-list">
-                        <!-- Se llena dinámicamente con JS -->
-                    </div>
-                </div>
-            </div>
+
 
             <!-- Negocios recomendados -->
             <div class="clx-card">
